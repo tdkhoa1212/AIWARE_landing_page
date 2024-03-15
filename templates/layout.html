@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}AIWARE{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/LandingPage.styles.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://example.com/path/to/site.css">
+    <style>
+        .button-form {
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .button-form:hover {
+            border: 1px solid var(--secondary-color);
+            background-color: #f0f0f0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow outline" style="background-color: var(--background-color); padding: 0;">
+            <div class="container mt-2 mb-4">
+                <a class="navbar-brand" href="/"><b>AIWARE</b></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link text-dark button-form" style="font-size: 0.85em;" href="/">Home</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link text-dark button-form" style="font-size: 0.85em;" href="Products">Products</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link text-dark button-form" style="font-size: 0.85em;" href="Contract">Contract</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link text-dark button-form" style="font-size: 0.85em;" href="About">About</a>
+                        </li>
+                        <!-- Your dynamic navigation items (if any) can be placed here -->
+                    </ul>
+                </div>                
+            </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+<footer class="border-top footer mt-3 py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 company-info">
+                <h4><b class="text-dark">AIWARE</b></h4>
+                <p>Real-time issue detection, precise diagnostics, and cost-effective operational optimizations.</p>
+            </div>
+            <div class="col-md-4 contact-info">
+                <h4><b class="text-dark">Contact Us</b></h4>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-envelope pr-2"></i><a href="mailto:AIWARE.ai.tech@gmail.com">AIWARE.ai.tech@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt pr-2"></i>17 Huynh Man Dat St., Hoa Cuong Bac Ward, Hai Chau Dist., Da Nang, Vietnam</li>
+                    <li><i class="fas fa-phone pr-2"></i><a href="tel:+84768241259">(+84) 768-241-259</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 social-links">
+                <h4><b class="text-dark">Connect with Us</b></h4>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="https://www.facebook.com/profile.php?id=100077587174250" class="social-icon" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook pr-2"></i>Facebook
+                    </a>
+                    <!-- Additional social icons can be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+</body>
+</html>

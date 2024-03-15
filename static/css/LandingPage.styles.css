@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #2C3D4F;
+    --secondary-color: #6f6f6f;
+    --background-color: #f8f8f8;
+    --border-color: #637282;
+    --image-shadow: 2px 2px 4px rgba(0, 0, 0.2, 0.2);
+}
+
+ul, p, u {
+    color: var(--primary-color);
+    font-size: 1.25em;
+    margin-bottom: 1em;
+}
+
+li{
+    margin-left: 1em;
+}
+
+header {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+body {
+    font-family: MetricHPEXS,Arial,sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 3.5em; /* Adjust based on your design */
+    margin-bottom: 0.5em; /* Add spacing between h1 and subsequent elements */
+}
+
+h2 {
+    font-size: 2.8em; /* Adjust based on your design */
+    margin-bottom: 0.5em; /* Add spacing between h2 and subsequent elements */
+}
+
+h3 {
+    font-size: 2.2em; /* Adjust based on your design */
+    margin-bottom: 0.5em; /* Add spacing between h3 and subsequent elements */
+}
+
+h4 {
+    font-size: 1.8em; /* Adjust based on your design */
+    margin-bottom: 0.5em; /* Add spacing between h4 and subsequent elements */
+}
+
+.description {
+    color: var(--secondary-color); 
+    font-size: 0.8em; 
+    margin-bottom:0.15em;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.section {
+    width: 100%;
+    padding: 0; 
+    padding-bottom: 0; 
+    text-align: center;
+}
+
+
+footer {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    padding: 20px;
+    text-align: center;
+}
+
+.page-banner {
+    position: static;
+    width: 100vw; /* Set the width to 100% of the viewport width */
+    margin-top: 8em;
+    margin-bottom: 8em;
+}
+
+body, html {
+    overflow-x: hidden;
+}
+
+.button_slide {
+    padding: 5px 10px;
+    color: var(--primary-color);
+    background-color: rgba(248, 248, 248, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    display: inline-block;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #95BDE8;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+}
+
+.btn-primary, .btn-secondary {
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+}
+
+.slide_right:hover {
+    color: white;
+    box-shadow: inset 400px 0 0 0 var(--border-color);
+}
+
+.button-wrapper{
+    text-align: center;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,709 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://example.com/path/to/site.css">
+<link rel="stylesheet" href="/static/css/LandingPage.styles.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<style>    
+    .info-box {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .info-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        height: 100%;
+    }
+
+    .card-header{
+        height: 8em;
+        text-align: center;
+    }
+
+    /*    ====================== section 1 ======================*/
+    .img-form {
+        border-radius: 1.25em;
+    }
+
+    .wrapper {
+        display: grid;
+        place-content: center;
+        background-color: var(--background-color);
+        min-height: 2vh;
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        color: var(--primary-color);
+    }
+
+    .wrapper > div {
+        grid-area: 1/1/-1/-1;
+    }
+
+    .top {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        transform: translateX(-0.02em);
+    }
+
+    .bottom {
+        clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+        color: transparent;
+        background: linear-gradient(177deg, var(--secondary-color) 53%, var(--primary-color) 65%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        transform: translateX(-0.02em);
+    }
+
+    /*    ====================== section 2 ======================*/
+    .eidos-slajd-container {
+        background-color: rgba(255, 255, 255, 0);
+        /*
+        width: 68.75em;
+        height: 37.5em;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        */
+    }    
+
+    .eidos-slajd-header {
+        background-color: rgba(248, 248, 248, 0.9);
+        color: #2C3D4F;
+        width: 35%;
+        height: 37.5em;
+        margin-right: 1em;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }    
+
+    .eidos-slajd-lista-container {
+        width: 70%;
+        height: 100%;
+        float: inline-start;
+        background-color: rgba(255, 255, 255, 0);
+    }    
+
+    [class*='eidos-p-text'] {
+        height: 21%;
+        position: relative;
+        border-radius: 20px;
+    }
+
+    .eidos-p-text {
+        border: 1px solid rgba(0,0,0,.05);
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .eidos-lub-text {
+        height: 5.33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grandient-background-1 {
+        background: linear-gradient(to right, #f8f8f8 40% , #FEF5FF 120%, #f8f8f8  120%);
+    }
+
+    .grandient-background-2 {
+        text-align: center;
+    }
+
+    .contain {
+        margin-left: 1.5em; 
+        margin-right: 1.5em; 
+    }
+   
+    .gradient-text {
+        background: linear-gradient(to right, #70B5FF, #70E2FF, #7088FF, #4CFCE7, #8670FF); 
+        filter: brightness(55%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    /*    ====================== section 3 ======================*/
+    .secondary-content{
+        color: var(--secondary-color);
+        display: flex-end; 
+        justify-content: center; 
+        align-items: center;
+    }
+    .fade-element {
+        display: flex;
+        transition: opacity 0.5s ease; /* Add transition effect */
+        opacity: 0.2; /* Initially hide the element */
+    }
+
+    /* =========================== Pop-up modal ==========================*/
+    .modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        position: relative;
+        width: 90%;
+        max-width: 500px; /* You can adjust max-width to your preference */
+        z-index: 2;
+    }
+
+    .contact-color{
+        border-color: #1C90D9; 
+        color: #007BFF;
+        font-weight: bold;
+    }
+</style>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
+
+
+<header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <h1 class="wrapper" style="font-weight: bold;">
+        <div class="top gradient-text" aria-hidden="true">AI Productions & Functions</div>
+        <div class="bottom" >AI Productions & Functions</div>
+    </h1>
+    <p>In the Industry and Daily Life!</p>
+    
+</header>
+
+{# @*========================================== SECTION 0 ==========================================*@ #}
+<body>
+    <section class="page-banner grandient-background-1">
+        <div class="contain">
+            <div class="row">
+                <div class="col">
+                    {# <div class="row">
+                        <h2 class="gradient-text"><b>🛠 Core Skills </b></h2>
+                    </div> #}
+                    <div class="row mb-5">
+                        <div class="col">
+                            <img src="{{ url_for('static', path='images/page_1_3.png') }}" style="filter: brightness(105%); object-fit: cover; height: 100%; width: 100%; border-radius: 20px; box-shadow: var(--image-shadow);" />
+                        </div>
+                        <div class="col">
+                            <h2 class="gradient-text"><b>🛠 Core Skills </b></h2>
+                            <h3><b>Rotating Machines & Batteries</b></h3>                        
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fas fa-cogs"></i> <b>Predictive Maintenance</b>
+                                    <div class="description">
+                                        Utilizing advanced analytics to foresee potential equipment failures and optimize maintenance schedules.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-cogs"></i> <b>Remaining Useful Life (RUL) Prediction</b>
+                                    <div class="description">
+                                        Predicting the lifespan of machinery components based on historical performance data.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-cogs"></i> <b>State of Charge (SOC) & State of Health (SOH) Prediction</b>
+                                    <div class="description">
+                                        Forecasting the current and future conditions of batteries to optimize their performance and longevity.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-cogs"></i> <b>Data Analysis</b>
+                                    <div class="description">
+                                        Analyzing diverse datasets including vibration, current, and voltage to extract actionable insights.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-cogs"></i> <b>Fault Diagnosis</b>
+                                    <div class="description">
+                                        Identifying and diagnosing system faults through comprehensive analysis and troubleshooting.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-2">                        
+                        <div class="col">
+                            <h3><b>Sound & Image Processing</b></h3>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fas fa-microphone-alt"></i> <b>Sound-based Flu Detection</b>
+                                    <div class="description">
+                                        Leveraging sound signals for early detection of flu outbreaks in communities.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-microphone-alt"></i> <b>Sound & Image-based Occupancy Estimation</b>
+                                    <div class="description">
+                                        Estimating occupancy levels in buildings using sound and image processing techniques.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-microphone-alt"></i> <b>Image Analysis</b>
+                                    <div class="description">
+                                        Implementing advanced image analysis methods, including Object and Face Detection algorithms.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-microphone-alt"></i> <b>Sound Processing</b>
+                                    <div class="description">
+                                        Utilizing sound processing techniques for Human and Object Voice Detection applications.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col">
+                            <h3><b>Web Development</b></h3>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="fas fa-globe"></i> <b>Web Development</b>
+                                    <div class="description">
+                                        Integrating AI models into Web Systems to enhance functionality and user experience.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-banner grandient-background-2">
+        <div class="container">
+            <h2 class="gradient-text">
+                <i class="fas fa-chart-line"></i> <b>Time-Series Data Analysis</b> 
+            </h2>
+            <p style="color: var(--secondary-color);  margin-bottom: 1.5em;">We analyze time-series data collected from various physical sensors</p>
+            <div class="row">
+                <div class="col"><i class="fas fa-tachometer-alt fa-2x mr-2"></i><p><b>Accelerometer</b></p></div>
+                <div class="col"><i class="fas fa-running fa-2x mr-2"></i><p><b>Motion</b></p></div>
+                <div class="col"><i class="fas fa-thermometer-half fa-2x mr-2"></i><p><b>Temperature</b></p></div>
+                <div class="col"><i class="fas fa-compress-arrows-alt fa-2x mr-2"></i><p><b>Pressure</b></p></div>
+                <div class="col"><i class="fas fa-volume-up fa-2x mr-2"></i><p><b>Sound</b></p></div>
+                <div class="col"><i class="fas fa-plus-circle fa-2x mr-2"></i><p><b>And more</b></p></div>
+            </div>
+            
+        </div>
+    </section>
+
+{# @*========================================== SECTION 1 ==========================================*@ #}
+    <section class="page-banner">
+        <div class="container">
+            <div class="row mb-2">
+                <h2 class="gradient-text">
+                    <i class="fas fa-signal"></i>
+                    <b>Rotating Machines & Batteries</b>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="card h-100" style="border-radius: 20px; border: none; background-color: var(--background-color);">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card mb-3 info-box">
+                                            <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                                                <div class="text-center">
+                                                    <h4><b>Predictive Maintenance</b></h4>
+                                                    <div class="description">
+                                                        <i class="fas fa-cogs mr-2"></i> for Rotating Machinery
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                            <div class="card-body">
+                                                <div class="row row ml-2 mx-2">
+                                                    <p><b>Features:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-chart-line"></i> Advanced Data Analytics & Machine Learning</li>
+                                                        <li><i class="fas fa-chart-line"></i> Proactive Failure Prediction</li>
+                                                    </ul>
+                                                    <p><b>Benefits:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-calendar-check"></i> Optimized Maintenance Scheduling</li>
+                                                        <li><i class="fas fa-calendar-check"></i> Reduced Unscheduled Downtime</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="button-wrapper">
+                                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card info-box">
+                                            <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                                                <div class="text-center">
+                                                    <h4><b>Fault Diagnosis</b></h4>
+                                                    <div class="description">
+                                                        <i class="fas fa-cogs mr-2"></i> for Rotating Machinery
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <div class="card-body">
+                                                <div class="row row ml-2 mx-2">
+                                                    <p><b>Features:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-chart-line"></i> Identifying abnormalities</li>
+                                                        <li><i class="fas fa-chart-line"></i> Analysis of systems or equipment</li>
+                                                    </ul class="list-unstyled">
+                                                    <p><b>Benefits:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-calendar-check"></i> Pinpointing potential issues</li>
+                                                        <li><i class="fas fa-calendar-check"></i> Promptly addressing issues</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="button-wrapper">
+                                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="card info-box">
+                                            <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                                                <div class="text-center">
+                                                    <h4><b>RUL Prediction</b></h4>
+                                                    <div class="secondary-content description">
+                                                        <i class="fas fa-cogs mr-2"></i> for Rotating Machinery
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="card-body">
+                                                <div class="row row ml-2 mx-2">
+                                                    <p><b>Features:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-chart-line"></i> Anticipating operational lifespan</li>
+                                                        <li><i class="fas fa-chart-line"></i> Data-driven analysis</li>
+                                                    </ul>
+                                                    <p><b>Benefits:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-calendar-check"></i> Proactive maintenance</li>
+                                                        <li><i class="fas fa-calendar-check"></i> Resource optimization</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="button-wrapper">
+                                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card info-box">
+                                            <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                                                <div class="text-center">
+                                                    <h4><b>SOC and SOH Prediction</b></h4>
+                                                    <div class="description">
+                                                        <i class="fas fa-battery-full mr-2"></i> for Battery
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="card-body">
+                                                <div class="row ml-2 mx-2">
+                                                    <p><b>Features:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-chart-line"></i> Evaluating battery status</li>
+                                                        <li><i class="fas fa-chart-line"></i> Assessing charge level</li>
+                                                    </ul>
+                                                    <p><b>Benefits:</b></p>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-calendar-check"></i> Monitoring battery health</li>
+                                                        <li><i class="fas fa-calendar-check"></i> Predicting battery lifespan</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="button-wrapper">
+                                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="row mx-1">
+                        <div class="card h-100" style="border-radius: 20px; border: none; background-color: var(--background-color)">
+                            <div class="card-title">
+                                <img src="{{ url_for('static', path='images/page_1_2.png') }}" class="card-img-top" style="object-fit: cover;" />
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title mb-4"><b><i class="fas fa-headset"></i> 24/7 Client Support</b></h3>
+                                <div>
+                                    <p><i class="fas fa-check"></i> Immediate Assistance Available</p>
+                                </div>
+                                <div>
+                                    <p><i class="fas fa-check"></i> Rapid Issue Resolution Guaranteed</p>
+                                </div>
+                                <button type="button" class="button_slide slide_right btn-lg contact-color openModalBtn">
+                                    <i class="fas fa-envelope-open-text mr-2"></i> Contact Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{# @*========================================== SECTION 2 ==========================================*@ #}
+<section class="page-banner">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <h2 class="gradient-text">
+                <i class="fas fa-microphone-alt"></i>
+                <b>Sound & Image Processing</b>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <!-- First Card -->
+                <div class="card">
+                    <div class="card-body eidos-p-text info-box">
+                        <b class="mb-2">Flu Detection</b>
+                        <div class="button-wrapper">
+                            <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <!-- Second Card -->
+                <div class="card">
+                    <div class="card-body eidos-p-text info-box">
+                        <b class="mb-2">Occupancy Estimation</b>
+                        <div class="button-wrapper">
+                            <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <!-- Third Card -->
+                <div class="card">
+                    <div class="card-body eidos-p-text info-box">
+                        <b class="mb-2">Face & Object detection</b>
+                        <div class="button-wrapper">
+                            <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <!-- Fourth Card -->
+                <div class="card">
+                    <div class="card-body eidos-p-text info-box">
+                        <b class="mb-2">Image Classification </b>
+                        <div class="button-wrapper">
+                            <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{# @*========================================== SECTION 3 ==========================================*@ #}
+<section class="section text-center" style="margin-top: 8em; margin-bottom: 8em;">
+    <h2 class="gradient-text"><i class="fas fa-unlock-alt"></i> <b>Unlock Greater Success with Us!</b></h2>
+    <p><i class="fas fa-check-circle"></i> Discover how our tailored solutions can elevate your business to new heights.</p>
+    <div class="button-wrapper">
+        <button type="button" class="openModalBtn button_slide slide_right btn-lg contact-color">
+            <i class="fas fa-envelope-open-text mr-2"></i> Contact Now
+        </button>
+    </div>
+</section>
+
+{# @*========================================== POP-UP MODAL ==========================================*@ #}
+<div id="myModal" class="modal" style="display: none;">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="modal-content text-center p-4" style="border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5);">
+            <div class="mb-4">
+                <div class="close" style="position: absolute; top: 10px; right: 20px; font-size: 1.5em; cursor: pointer;">&times;</div>
+                <span class="back-arrow" style="position: absolute; top: 10px; left: 20px; font-size: 1.5em; cursor: pointer; color: var(--secondary-color);">
+                    <i class="fas fa-arrow-alt-circle-left"></i>
+                </span>
+            </div>
+
+            <div id="askingFrom" style="display: none;">
+                <p>Please Login or Create an account!</p>
+                <div class="button-wrapper">
+                    <button class="btn btn-primary mx-1 openLoginBtn">Login</button>
+                    <button class="btn btn-secondary ml-1 openSignUpBtn">Sign Up</button>
+                </div>
+            </div>
+            
+            <div id="loginForm" style="display: none;">
+                <form id="login-form">
+                    <div class="mb-3">
+                        <input style="border-radius: 20px;" type="text" class="form-control" id="loginUsername" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input style="border-radius: 20px;" type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+
+            <div id="signUpForm" style="display: none;">
+                <form id="signup-form">
+                    <div class="mb-3">
+                        <input style="border-radius: 20px;" type="text" class="form-control" id="signupUsername" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input style="border-radius: 20px;" type="email" class="form-control" id="signupEmail" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <input style="border-radius: 20px;" type="password" class="form-control" id="signupPassword" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script> 
+    var btn = document.querySelectorAll(".openModalBtn");
+    var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("myModal");
+
+    var askingForm = document.getElementById("askingFrom")
+    var loginForm = document.getElementById("loginForm");
+    var signUpForm = document.getElementById("signUpForm");
+    var signUpBtn = document.querySelector('.openSignUpBtn');
+    var loginBtn = document.querySelector('.openLoginBtn');
+    var closeBtn = document.querySelector('.close');
+
+    // -------------- Turn on pop-up Modal --------------
+    btn.forEach(function(button) {
+        button.onclick = function() {
+            modal.style.display = "block";
+            askingForm.style.display = "block";
+        }
+    });
+
+    span.onclick = function() {
+        modal.style.display = "none";
+        askingForm.style.display = "none";
+    }
+
+    window.onclick = function(event) { // When the user clicks anywhere outside of the modal, close it
+        if (event.target == modal) {
+            modal.style.display = "none";
+            askingForm.style.display = "none";
+        }
+    }
+
+    // ---------------------------------------------------
+
+    signUpBtn.onclick = function() {
+        // modal.style.display = "block";
+        askingForm.style.display = "none";
+        signUpForm.style.display = "block";
+        loginForm.style.display = "none";
+    }
+
+    loginBtn.onclick = function() {
+        // modal.style.display = "block";
+        askingForm.style.display = "none";
+        loginForm.style.display = "block";
+        signUpForm.style.display = "none";
+    }
+
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+        loginForm.style.display = "none";
+        signUpForm.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            loginForm.style.display = "none";
+            signUpForm.style.display = "none";
+        }
+    }
+
+    // Handle sign-up form submission
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        var object = {};
+        formData.forEach(function(value, key){
+            object[key] = value;
+        });
+        var jsonData = JSON.stringify(object);
+
+        fetch('/signup/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Handle success or error response
+            // For example, display a success message or show error to the user
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle error
+        });
+    });
+</script>
+
+
+</body>
+{% endblock %}
+
+
+
+    
