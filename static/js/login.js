@@ -34,12 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok) {
                 throw new Error('Login failed');
             }
-            return response.text(); // Assuming the response might not be JSON since we are rendering an 'index.html'
+            return response.json(); // Assuming the response might not be JSON since we are rendering an 'index.html'
         })
-        .then(text => {
-            // Handling successful login by rendering HTML response
-            document.documentElement.innerHTML = text;
-        })
+        .then(data => {
+            if (data.email) {
+              window.location.href = `http://127.0.0.1:8000/verification/verify?email=${encodeURIComponent(data.email)}`;
+            } else {
+              console.error('Email is undefined:', data);
+            }
+          })
         .catch(error => {
             // Error handling
             console.error('Error:', error);
