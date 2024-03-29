@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import os
-from .routers import user, auth, verification
+from .routers import user, auth, verification, products, contact, about
 import uvicorn
 
 app = FastAPI()
@@ -30,6 +30,10 @@ async def read_template(request: Request, template_name: str):
 app.include_router(user.router)
 app.include_router(auth.router)
 app.include_router(verification.router, prefix="/verification") 
+app.include_router(products.router)
+app.include_router(contact.router)
+app.include_router(about.router)
+
 
 @app.get("/favicon.ico") # Ignore requests for favicon
 async def get_favicon():

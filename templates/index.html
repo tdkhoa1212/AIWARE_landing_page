@@ -52,12 +52,13 @@
                 <path vector-effect="non-scaling-stroke" stroke="var(--icon-color, #001e00)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M18 10l-6 5-6-5"></path>
             </svg>
         </button> 
-            
-        <div id="myDropdown" class="dropdown-content">
+           
+        {# <div id="myDropdown" class="dropdown-content">
             <a href="/profile">Profile</a>
             <a href="/settings">Settings</a>
             <a href="/logout">Logout</a>
-        </div>
+        </div> #}
+        
     </div>
 
     <script src="/static/js/dropdown.js"></script>
@@ -120,8 +121,12 @@
 
     .bottom {
         clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+        
         color: transparent;
         background: linear-gradient(177deg, var(--secondary-color) 53%, var(--primary-color) 65%);
+        /*
+        color: var(--primary-color);
+        */
         background-clip: text;
         -webkit-background-clip: text;
         transform: translateX(-0.02em);
@@ -228,7 +233,8 @@
         <div class="top gradient-text" aria-hidden="true">AI Productions & Functions</div>
         <div class="bottom" >AI Productions & Functions</div>
     </h1>
-    <p>In the Industry and Daily Life!</p>
+    <p>In the Industry and Daily Life</p>
+
     
 </header>
 
@@ -240,43 +246,43 @@
                 <div class="col">
                     <div class="row mb-5">
                         <div class="col">
-                            <img src="{{ url_for('static', path='images/page_1_3.png') }}" style="filter: brightness(105%); object-fit: cover; height: 100%; width: 100%; border-radius: 20px; box-shadow: var(--image-shadow);" />
+                            <img src="{{ url_for('static', path='images/aiware-rotating-machinery.png') }}" style="filter: brightness(105%); object-fit: cover; height: 100%; width: 100%; border-radius: 20px; box-shadow: var(--image-shadow);" />
                         </div>
                         <div class="col">
                             <h2 class="gradient-text"><b>🛠 Core Skills </b></h2>
                             <h3><b>Rotating Machines & Batteries</b></h3>                        
                             <ul class="list-unstyled">
                                 <li>
-                                    <i class="fas fa-cogs"></i> <b>Predictive Maintenance</b>
+                                    <i class="fas fa-cogs"></i> <b>Predictive Maintenance (PM)</b>
                                     <div class="description">
-                                        Utilizing advanced analytics to foresee potential equipment failures and optimize maintenance schedules.
+                                        Addressing potential failures in machines such as rotating machinery, jet engines, etc., to minimize downtime and enhance reliability.
                                     </div>
                                 </li>
                                 <li>
-                                    <i class="fas fa-cogs"></i> <b>Remaining Useful Life (RUL) Prediction</b>
+                                    <i class="fas fa-cogs"></i> <b>Prognostics and Health Management (PHM)</b>
                                     <div class="description">
-                                        Predicting the lifespan of machinery components based on historical performance data.
+                                        Forecasting Remaining Useful Life (RUL) for machines such as rotating machinery, jet engines, etc., optimizing maintenance schedules.
                                     </div>
                                 </li>
                                 <li>
-                                    <i class="fas fa-cogs"></i> <b>State of Charge (SOC) & State of Health (SOH) Prediction</b>
+                                    <i class="fas fa-cogs"></i> <b>Battery Management System (BMS)</b>
                                     <div class="description">
-                                        Forecasting the current and future conditions of batteries to optimize their performance and longevity.
+                                        Forecasting Predict State of Charge (SOC), State of Health (SOH), and Remaining Useful Life (RUL) of batteries, enhancing performance and longevity.
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-cogs"></i> <b>Data Collection</b>
+                                    <div class="description">
+                                        Collecting data from sensors, and integrate it into your system for analysis.
                                     </div>
                                 </li>
                                 <li>
                                     <i class="fas fa-cogs"></i> <b>Data Analysis</b>
                                     <div class="description">
-                                        Analyzing diverse datasets including vibration, current, and voltage to extract actionable insights.
+                                        Analyze diverse datasets, including vibration, current, and voltage, and other data from sensors, user input, systems to derive actionable insights.
                                     </div>
                                 </li>
-                                <li>
-                                    <i class="fas fa-cogs"></i> <b>Fault Diagnosis</b>
-                                    <div class="description">
-                                        Identifying and diagnosing system faults through comprehensive analysis and troubleshooting.
-                                    </div>
-                                </li>
-                            </ul>
+                            </ul>                            
                         </div>
                     </div>
                     <div class="row mt-2">                        
@@ -374,13 +380,14 @@
                                                 <div class="row row ml-2 mx-2">
                                                     <p><b>Features:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-chart-line"></i> Advanced Data Analytics & Machine Learning</li>
-                                                        <li><i class="fas fa-chart-line"></i> Proactive Failure Prediction</li>
+                                                        <li><i class="fas fa-chart-line"></i> Early detection of abnormalities</li>
+                                                        <li><i class="fas fa-chart-line"></i> Proactive prediction of failures</li>
                                                     </ul>
                                                     <p><b>Benefits:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-calendar-check"></i> Optimized Maintenance Scheduling</li>
-                                                        <li><i class="fas fa-calendar-check"></i> Reduced Unscheduled Downtime</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Reduced Downtime</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Improved Safety</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Cost Savings</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -393,7 +400,7 @@
                                         <div class="card info-box">
                                             <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
                                                 <div class="text-center">
-                                                    <h4><b>Fault Diagnosis</b></h4>
+                                                    <h4><b>Prognostics and Health Management</b></h4>
                                                     <div class="description">
                                                         <i class="fas fa-cogs mr-2"></i> for Rotating Machinery
                                                     </div>
@@ -403,13 +410,14 @@
                                                 <div class="row row ml-2 mx-2">
                                                     <p><b>Features:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-chart-line"></i> Identifying abnormalities</li>
-                                                        <li><i class="fas fa-chart-line"></i> Analysis of systems or equipment</li>
+                                                        <li><i class="fas fa-chart-line"></i> Remaining Useful Life (RUL) Prediction </li>
+                                                        <li><i class="fas fa-chart-line"></i> Operating Conditions (OC) Prediction</li>
                                                     </ul class="list-unstyled">
                                                     <p><b>Benefits:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-calendar-check"></i> Pinpointing potential issues</li>
-                                                        <li><i class="fas fa-calendar-check"></i> Promptly addressing issues</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Optimized Maintenance Planning</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Extended Equipment Lifespan </li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Cost Savings </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -424,7 +432,7 @@
                                         <div class="card info-box">
                                             <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
                                                 <div class="text-center">
-                                                    <h4><b>RUL Prediction</b></h4>
+                                                    <h4><b>Data Analysis</b></h4>
                                                     <div class="secondary-content description">
                                                         <i class="fas fa-cogs mr-2"></i> for Rotating Machinery
                                                     </div>
@@ -434,13 +442,15 @@
                                                 <div class="row row ml-2 mx-2">
                                                     <p><b>Features:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-chart-line"></i> Anticipating operational lifespan</li>
-                                                        <li><i class="fas fa-chart-line"></i> Data-driven analysis</li>
+                                                        <li><i class="fas fa-chart-line"></i> Visualizing data in various forms</li>
+                                                        <li><i class="fas fa-chart-line"></i> Performing data analysis</li>
                                                     </ul>
                                                     <p><b>Benefits:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-calendar-check"></i> Proactive maintenance</li>
-                                                        <li><i class="fas fa-calendar-check"></i> Resource optimization</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Improved Understanding</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Detection of Patterns and Trends</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Enhanced Decision Making</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Cost Savings </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -453,9 +463,9 @@
                                         <div class="card info-box">
                                             <div class="card-header d-flex justify-content-center align-items-center" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
                                                 <div class="text-center">
-                                                    <h4><b>SOC and SOH Prediction</b></h4>
+                                                    <h4><b>Battery Management System</b></h4>
                                                     <div class="description">
-                                                        <i class="fas fa-battery-full mr-2"></i> for Battery
+                                                        <i class="fas fa-battery-full mr-2"></i> for Batteries
                                                     </div>
                                                 </div>
                                             </div> 
@@ -463,13 +473,16 @@
                                                 <div class="row ml-2 mx-2">
                                                     <p><b>Features:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-chart-line"></i> Evaluating battery status</li>
-                                                        <li><i class="fas fa-chart-line"></i> Assessing charge level</li>
+                                                        <li><i class="fas fa-chart-line"></i> State of Charge (SoC) Prediction </li>
+                                                        <li><i class="fas fa-chart-line"></i> State of Health (SoH) Prediction</li>
+                                                        <li><i class="fas fa-chart-line"></i> Remaining Useful Life (RUL) Prediction</li>
                                                     </ul>
                                                     <p><b>Benefits:</b></p>
                                                     <ul class="list-unstyled">
-                                                        <li><i class="fas fa-calendar-check"></i> Monitoring battery health</li>
-                                                        <li><i class="fas fa-calendar-check"></i> Predicting battery lifespan</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Enhanced Battery Performance</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Improved Safety</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Optimized Energy Efficiency</li>
+                                                        <li><i class="fas fa-check" style="color: green;"></i> Cost Savings</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -487,19 +500,21 @@
                     <div class="row mx-1">
                         <div class="card h-100" style="border-radius: 20px; border: none; background-color: var(--background-color)">
                             <div class="card-title">
-                                <img src="{{ url_for('static', path='images/page_1_2.png') }}" class="card-img-top" style="object-fit: cover;" />
+                                <img src="{{ url_for('static', path='images/aiware-customer-service.png') }}" class="card-img-top" style="object-fit: cover;" />
                             </div>
                             <div class="card-body">
                                 <h3 class="card-title mb-4"><b><i class="fas fa-headset"></i> 24/7 Client Support</b></h3>
                                 <div>
-                                    <p><i class="fas fa-check"></i> Immediate Assistance Available</p>
+                                    <p><i class="fas fa-check" style="color: green;"></i> Quick Support</p>
                                 </div>
                                 <div>
-                                    <p><i class="fas fa-check"></i> Rapid Issue Resolution Guaranteed</p>
+                                    <p><i class="fas fa-check" style="color: green;"></i> Rapid Issue Resolution</p>
                                 </div>
-                                <button type="button" class="button_slide slide_right btn-lg contact-color openModalBtn mb-4">
-                                    <i class="fas fa-envelope-open-text mr-2"></i> Contact Now
-                                </button>
+                                <a href="/Contact">
+                                    <button type="button" class="button_slide slide_right btn-lg contact-color mb-4"> 
+                                        <i class="fas fa-envelope-open-text mr-2"></i> Contact Now
+                                    </button>
+                                </a>
                                 <div class="mb-2">
                                     <i class="fas fa-phone pr-2"></i><a href="tel:+84768241259" style="color: black;">(+84) 768-241-259</a>
                                 </div>
@@ -583,9 +598,11 @@
         <h2 class="gradient-text"><i class="fas fa-unlock-alt"></i> <b>Unlock Greater Success with Us!</b></h2>
         <p><i class="fas fa-check-circle"></i> Discover how our tailored solutions can elevate your business to new heights.</p>
         <div class="button-wrapper">
-            <button type="button" class="openModalBtn button_slide slide_right btn-lg contact-color">
-                <i class="fas fa-envelope-open-text mr-2"></i> Contact Now
-            </button>
+            <a href="/Contact">
+                <button type="button" class="button_slide slide_right btn-lg contact-color">
+                    <i class="fas fa-envelope-open-text mr-2"></i> Contact Now
+                </button>
+            </a>
         </div>
     </section>
 

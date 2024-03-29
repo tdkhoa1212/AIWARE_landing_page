@@ -1,12 +1,69 @@
 <!-- templates/about.html -->
+{% extends "layout.html" %}
+{% block content %}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
+    <title>About AIWARE</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">    
+    <link href="/static/css/LandingPage.styles.css" rel="stylesheet">
 </head>
 <body>
-    <h1>About Us</h1>
-    <p>This is the about page content.</p>
+
+<section class="company-about-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="section-title"><i class="fas fa-info-circle"></i> About AIWARE</h2>
+                <p class="lead"><i class="fab fa-innovate"></i> AIWARE is a leading provider of innovative solutions in artificial intelligence and machine learning. With a focus on quality, reliability, and customer satisfaction, we have established ourselves as a trusted partner for businesses seeking cutting-edge technology solutions.</p>
+                <p><i class="fas fa-robot"></i> Our commitment to excellence is reflected in our track record of delivering high-performance products and services that meet the needs of our clients across various industries.</p></p>
+                <p><i class="fas fa-award"></i> With a team of highly skilled professionals and a culture of continuous improvement, we are dedicated to staying at the forefront of technological advancements and providing our clients with innovative solutions that drive success.</p>
+            
+                <!--
+                <div class="client-logos my-4">
+                    <img src="client-logo-1.png" alt="Client 1" class="img-fluid">
+                    <img src="client-logo-2.png" alt="Client 2" class="img-fluid">
+                    Add more logos as needed
+                </div>
+                -->
+            </div>            
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <!-- Optionally include an image or a video about the company -->
+                <img src="/static/images/AIWARE.jpg" alt="About AIWARE" class="img-fluid" style="border-radius: 20px;">
+
+                <!-- Could also embed a video -->
+                <!-- <iframe width="100%" height="215" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            </div>
+        </div>
+        <div class="row">
+            <h2><i class="fas fa-book"></i> Publications</h2>
+        </div>
+        <ul>
+            <li>
+              <a style="color: black;" href="https://arxiv.org/pdf/2310.11477.pdf">
+                Robust-MBFD: A Robust Deep Learning System for Motor Bearing Faults Detection Using Multiple Deep Learning Training Strategies and A Novel Double Loss Function
+              </a>
+              - 2024
+            </li>
+            <li>
+              <a style="color: black;" href="https://arxiv.org/pdf/2309.06157v2.pdf">
+                Robust-MBDL: A Robust Multi-branch Deep Learning Based Model for Remaining Useful Life Prediction and Operational Condition Identification of Rotating Machines
+              </a>
+              - 2024
+            </li>
+            <!-- Add more list items for more publications -->
+          </ul>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+{% endblock %}
+
