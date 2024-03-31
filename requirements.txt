@@ -2,3 +2,5 @@ fastapi
 sqlalchemy
 passlib
 pymysql
+uvicorn
+jinja2
