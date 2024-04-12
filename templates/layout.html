@@ -6,53 +6,88 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
         .button-form {
-            font-size: 0.85em;
-            border-radius: 20px;
+            font-size: 0.65em;
+            border-radius: 1.25em;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.1s ease;
         }
 
         .button-form:hover {
-            border: 1px solid var(--secondary-color);
+            border: 0.0625em solid var(--secondary-color);
             background-color: var(--hover-background-color);
         }
         
+        .button-contact{
+            color: var(--background-color) !important;
+            background-color: var(--primary-color);
+            font-size: 0.65em !important;
+            border-radius: 1.25em;
+            cursor: pointer;
+            transition: background-color 0.1s ease;
+        }
+
+        .button-contact:hover {
+            border: 0.0625em solid var(--secondary-color);
+            background-color: var(--hover-background-color);
+        }
+
+        /*-----------------------------------------------------------*/
         .navbar-light .navbar-nav .nav-link {
             color: var(--primary-color);
         }
-        .navbar-light .navbar-brand {
+        .navbar-brand {
             color: var(--primary-color);
         }
+        .structure{
+            height: 3.3em;
+            border-radius: 1.25em;
+            backdrop-filter: blur(1.25em);
+            border: 0.0625em solid var(--border-color);
+            padding: 0;
+        }
+        
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow outline" style="padding: 0;">
-            <div class="container mt-2 mb-4">
-                <a class="navbar-brand" href="/"><b>AIWARE</b></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item" style="margin-left: 0.1em;">
-                            <a class="nav-link button-form" href="/">Home</a>
-                        </li>
-                        <li class="nav-item" style="margin-left: 0.1em;">
-                            <a class="nav-link button-form" href="Products">Products</a>
-                        </li>
-                        <li class="nav-item" style="margin-left: 0.1em;">
-                            <a class="nav-link button-form" href="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item" style="margin-left: 0.1em;">
-                            <a class="nav-link button-form" href="About">About</a>
-                        </li>
-                    </ul>
-
-                    {% block navbar %}
-                    {% endblock navbar %} 
-                </div>    
+    <header class="pt-2">
+        <nav class="navbar-expand-sm navbar-light">
+            <div class="container">
+                <div class="row structure">
+                    <div class="col">
+                        <a class="navbar-brand" href="/" style="background-image: url('/static/images/logo/AIWARE_white.png'); background-position: center; background-size: cover; width: 7.5em; height: 2.5em;">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center mt-2">
+                        {# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button> #}
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item" style="margin-left: 0.1em;">
+                                    <a class="nav-link button-form" href="/">HOME</a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 0.1em;">
+                                    <a class="nav-link button-form" href="About">ABOUT</a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 0.1em;">
+                                    <a class="nav-link button-form" href="Products">PRODUCTS</a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col d-flex justify-content-center align-items-center mt-2">
+                        <ul class="navbar-nav" style="width: auto;">
+                            <li class="nav-item " style="margin-left: 0.1em;">
+                                <a class="nav-link button-contact button_slide slide_right" href="Contact" style="line-height: 1.4em;">CONTACT &#187;</a>
+                            </li>
+                        </ul>
+                    </div>                    
+                </div>
             </div>
         </nav>
     </header>
@@ -62,29 +97,56 @@
         {% endblock content %}
     </div>
 
-<footer class="border-top footer mt-3 py-4 bg-light">
+<footer class="border-top footer mt-3 py-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 company-info">
-                <h4><b class="text-dark">AIWARE</b></h4>
-                <p>Real-time issue detection, precise diagnostics, and cost-effective operational optimizations.</p>
-            </div>
-            <div class="col-md-4 contact-info">
-                <h4><b class="text-dark">Contact Us</b></h4>
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-envelope pr-2"></i><a href="mailto:khoa.tran@aiware.website" style="color: black;">khoa.tran@aiware.website</a></li>
-                    <li><i class="fas fa-map-marker-alt pr-2"></i>17 Huynh Man Dat St., Hoa Cuong Bac Ward, Hai Chau Dist., Da Nang, Vietnam</li>
-                    <li><i class="fas fa-phone pr-2"></i><a href="tel:+84768241259" style="color: black;">(+84) 768-241-259</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 social-links">
-                <h4><b class="text-dark">Connect with Us</b></h4>
-                <div class="d-flex justify-content-center align-items-center">
-                    <a href="https://www.facebook.com/profile.php?id=100077587174250" class="social-icon" target="_blank" rel="noopener noreferrer" style="color: black;">
-                        <i class="fab fa-facebook pr-2"></i>Facebook
+            <div class="col-md-4 justify-content-center">
+                <h4 class="mb-4">
+                    <a class="navbar-brand" href="/" style="background-image: url('/static/images/logo/AIWARE_white.png'); background-position: center; background-size: cover; width: 9em; height: 2em;">
                     </a>
-                    <!-- Additional social icons can be added here -->
+                </h4>
+                <p style="color: var(--secondary-color);">Real-time issue detection, precise diagnostics, and cost-effective operational optimizations.</p>
+                <div class="row justify-content-center">
+                    <div class="col-auto" style="padding: 0.25em;">
+                        <p>
+                            <a href="https://www.facebook.com/profile.php?id=100077587174250" class="social-icon" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color);">
+                                <i class="fab fa-facebook pr-2"></i>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-auto" style="padding: 0.25em;">
+                        <p>
+                            <a href="https://www.linkedin.com/company/aiware-limited-company/about/?viewAsMember=true" class="social-icon" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color);">
+                                <i class="fab fa-linkedin pr-2"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex justify-content-center align-items-center navbar-light">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link button-form" href="/">HOME</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link button-form" href="About">ABOUT</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link button-form" href="Products">PRODUCTS</a>
+                        </li>
+                        <li class="nav-item" style="margin-left: 0.1em;">
+                            <a class="nav-link button-form" href="Contact">CONTACT</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+            <div class="col-md-4">
+                <h4 class="mb-4">Contact Us</h4>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-envelope pr-2"></i><a href="mailto:khoa.tran@aiware.website" style="color: var(--primary-color);">khoa.tran@aiware.website</a></li>
+                    <li><i class="fas fa-phone pr-2"></i><a href="tel:+84768241259" style="color: var(--primary-color);">(+84) 768-241-259</a></li>                    
+                </ul>
             </div>
         </div>
     </div>

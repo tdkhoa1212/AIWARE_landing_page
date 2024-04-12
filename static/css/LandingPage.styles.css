@@ -1,10 +1,33 @@
-:root {
+/* :root {
     --hover-background-color: #f0f0f0;
     --primary-color: #2C3D4F;
     --secondary-color: #6f6f6f;
     --background-color: #f8f8f8;
     --border-color: #637282;
     --image-shadow: 2px 2px 4px rgba(0, 0, 0.2, 0.2);
+} */
+
+.gradient-text {
+    background: linear-gradient(to right, #70B5FF, #70E2FF, #7088FF, #4CFCE7, #8670FF); 
+    filter: brightness(75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+:root {
+    --hover-background-color: #f0f0f0;
+    --primary-color: #f8f8f8;
+    --secondary-color: rgba(233, 231, 229, 0.65);
+    --background-color: black;
+    --border-color: #2C3D4F;
+    --image-shadow: 2px 2px 4px rgba(0, 0, 0.2, 0.2);
+}
+
+.box-transition{
+    transition: transform 0.2s ease-in-out;
+}
+.box-transition:hover {
+    transform: scale(1.1); /* Scale the box to 1.2 times its original size */
 }
 
 ul, p, u {
@@ -13,8 +36,10 @@ ul, p, u {
     margin-bottom: 1em;
 }
 
+
 li{
-    margin-left: 1em;
+    margin-left: 0.6em;
+    margin-bottom: 1em;
 }
 
 header {
@@ -36,7 +61,7 @@ h1 {
 
 h2 {
     font-size: 2.8em; /* Adjust based on your design */
-    margin-bottom: 0.5em; /* Add spacing between h2 and subsequent elements */
+    margin-bottom: 1em; /* Add spacing between h2 and subsequent elements */
 }
 
 h3 {
@@ -74,11 +99,16 @@ footer {
     text-align: center;
 }
 
+.contain {
+    margin-left: 2.5em; 
+    margin-right: 2.5em; 
+}
+
 .page-banner {
     position: static;
     width: 100vw; /* Set the width to 100% of the viewport width */
     margin-top: 4em;
-    margin-bottom: 8em;
+    margin-bottom: 9em;
 }
 
 body, html {
@@ -86,13 +116,13 @@ body, html {
 }
 
 .button_slide {
-    padding: 5px 10px;
-    color: var(--primary-color);
-    background-color: rgba(248, 248, 248, 0.7);
+    padding: 0.3125em 0.625em; 
+    color: var(--background-color);
+    background-color: var(--primary-color);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 1.25em; 
     display: inline-block;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625em; 
     cursor: pointer;
     box-shadow: inset 0 0 0 0 #95BDE8;
     -webkit-transition: ease-out 0.4s;
@@ -102,8 +132,9 @@ body, html {
 
 .btn-primary, .btn-secondary {
     border: 1px solid var(--border-color);
-    border-radius: 1.25em;
+    border-radius: 1.25em; /* You had this already correct */
 }
+
 
 .slide_right:hover {
     color: white;
