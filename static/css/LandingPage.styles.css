@@ -30,11 +30,12 @@
     transform: scale(1.1); /* Scale the box to 1.2 times its original size */
 }
 
-ul, p, u {
+ul, p, u, label, select {
     color: var(--primary-color);
     font-size: 1.25em;
     margin-bottom: 1em;
 }
+
 
 
 li{

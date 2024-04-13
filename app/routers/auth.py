@@ -5,10 +5,10 @@ from pydantic import BaseModel
 from passlib.context import CryptContext
 from fastapi.templating import Jinja2Templates
 import secrets
-from ..models.user import User
-from ..routers.user import get_db
+from ..models.User import User
+from ..routers.User import get_db
 from fastapi.responses import JSONResponse
-from ..models.user import UserCreate, User, create_tables
+from ..models.User import UserCreate, User, create_tables
 
 
 router = APIRouter()

@@ -4,3 +4,5 @@ passlib
 pymysql
 uvicorn
 jinja2
+matplotlib
+pickle

@@ -1,18 +1,189 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Information</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">    
-<link href="/static/css/LandingPage.styles.css" rel="stylesheet">
-</head>
+
+<link rel="stylesheet" href="/static/css/LandingPage.styles.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<style>
+    .section1-label{
+        margin-right: 1em;
+        margin-top: 0.4em;
+    }
+
+    .section1-dropdown{
+        border-radius: 1.25em;
+        border: 0.0625em solid var(--border-color);
+        background-color: var(--background-color);
+        color: var(--primary-color);
+        padding: 0.5em;
+    }
+
+    .loader,
+    .loader:after {
+        border-radius: 50%;
+        width: 10em;
+        height: 10em;
+    }
+    .loader {
+        margin: 60px auto;
+        font-size: 10px;
+        position: relative;
+        text-indent: -9999em;
+        border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-left: 1.1em solid #ffffff;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation: load8 1.1s infinite linear;
+        animation: load8 1.1s infinite linear;
+    }
+
+    @-webkit-keyframes load8 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes load8 {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var conditionSelector = document.getElementById('conditionSelector');
+        var techniqueSelector = document.getElementById('techniqueSelector');
+        var degradationPredictionSelector = document.getElementById('degradationPredictionSelector');
+        var filterSelector = document.getElementById('filterSelector');
+        var descriptionContainer = document.getElementById('descriptionContainer');
+    
+        // Descriptions corresponding to the dropdown values
+        var descriptions = {
+            '35Hz12kN': 'Operating at 35 Hz frequency and 12 kN load',
+            '37.5Hz11kN': 'Operating at 37.5 Hz frequency and 11 kN load',
+            '40Hz10kN': 'Operating at 40 Hz frequency and 10 kN load'
+        };
+        
+        function UpdateDescription(value) {
+            if (descriptions[value]) {
+                descriptionContainer.textContent = descriptions[value];
+            } else {
+                descriptionContainer.textContent = ''; // Clear the text if no option is selected
+            }
+        }
+    
+        // Initial disable checks
+        if (techniqueSelector.value === "Magnitude") {
+            filterSelector.value = "none";
+            filterSelector.disabled = true;
+    
+            degradationPredictionSelector.value = "no";
+            degradationPredictionSelector.disabled = true;
+        }
+    
+        // Event listener for when the user changes the selection
+        conditionSelector.addEventListener('change', function() {
+            UpdateDescription(this.value);
+        });
+    
+        techniqueSelector.addEventListener('change', function() {
+            if (this.value === "Magnitude") {
+                filterSelector.value = "none";
+                filterSelector.disabled = true;
+    
+                degradationPredictionSelector.value = "no";
+                degradationPredictionSelector.disabled = true;
+            } else {
+                filterSelector.disabled = false;
+                degradationPredictionSelector.disabled = false;
+            }
+        });
+    
+        // Initial Description Update
+        UpdateDescription(conditionSelector.value);
+    });    
+</script>
+
 <body>
+    <section class="page-banner text-center">
+        <div class="container">
+            <div class="row" >
+                <h2 class="gradient-text" style="text-transform: uppercase;">
+                    <b>Signal Visualization</b> 
+                </h2>
+            </div>
 
-
+            <div class="row text-left">
+                <div class="col">
+                    <div class="row text-left">
+                        <label for="conditionSelector" class="section1-label">Operating Condition (OC):</label>
+                        <select id="conditionSelector" class="section1-dropdown">
+                            <option value="35Hz12kN" selected>35 Hz 12 kN</option>
+                            <option value="37.5Hz11kN">37.5 Hz 11 kN</option>
+                            <option value="40Hz10kN">40 Hz 10 kN</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <p style="color: var(--secondary-color);" id="descriptionContainer"></p>
+                    </div>  
+                </div>
+                <div class="col">
+                    <div class="row text-left">
+                        <label for="techniqueSelector" class="section1-label">Visualization Techniques:</label>
+                        <select id="techniqueSelector" class="section1-dropdown">
+                            <option value="RMS" selected>Root Mean Square</option>
+                            <option value="Magnitude">Magnitude</option>
+                        </select>
+                    </div>
+                    <div class="row text-left">
+                        <label for="axisSelector" class="section1-label">Accelerometer Axis:</label>
+                        <select id="axisSelector" class="section1-dropdown">
+                            <option value="horizontal" selected>Horizontal</option>
+                            <option value="vertical">Vertical</option>
+                        </select>
+                    </div>     
+                    <div class="row text-left">
+                        <label for="filterSelector" class="section1-label">Filter:</label>
+                        <select id="filterSelector" class="section1-dropdown">
+                            <option value="none">None</option>
+                            <option value="gaussian">Gaussian</option>
+                            <option value="moving-average">Moving Average</option>
+                        </select>
+                    </div>   
+                    <div class="row text-left section1-FPT-box">
+                        <label for="degradationPredictionSelector" class="section1-label">Initial Degradation Time Prediction:</label>
+                        <select id="degradationPredictionSelector" class="section1-dropdown">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>                                 
+                </div>
+            </div>
+                                
+            <div class="row">
+                <div id="loadingIndicator" class="loader" style="display: none;"></div>
+                <img id="signalPlot" src="#" alt="Signal Plot" style="display:none;">
+                <script src="/static/js/Visualize_signals.js"></script>
+            </div>            
+        </div>
+    </section>
 </body>
 </html>
+
+
 {% endblock %} 

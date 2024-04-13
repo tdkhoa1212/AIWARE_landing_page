@@ -2,13 +2,13 @@ from fastapi import FastAPI, Request, Depends, HTTPException, Depends, status
 from fastapi import APIRouter, Depends
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
-from ..database import SessionLocal
-from ..models.user import UserCreate, User, create_tables
-from ..utils import send_verification_email
+from ..Database import SessionLocal
+from ..models.User import UserCreate, User, create_tables
+from ..Utils import send_verification_email
 from pydantic import BaseModel 
 from passlib.context import CryptContext
 from sqlalchemy import inspect
-from app.database import engine
+from app.Database import engine
 import secrets
 
 router = APIRouter()
