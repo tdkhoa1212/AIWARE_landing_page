@@ -6,3 +6,7 @@ uvicorn
 jinja2
 matplotlib
 pickle
+pymongo
+python-multipart
+scipy
+gunicorn
