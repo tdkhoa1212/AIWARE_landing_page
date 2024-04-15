@@ -16,12 +16,12 @@ def generate_signals_plot(data, fpt):
         plt.grid(True, color='gray')  # Add grid with gray color
 
         plt.title('Signal Plot', color='white')
-        plt.xlabel('Sample Index', color='white')
+        plt.xlabel('Time (minutes)', color='white')  # Change x-axis label
         plt.ylabel('Signal Value', color='white')
         plt.legend()
         
         buffer = BytesIO()
-        plt.savefig(buffer, format='png')
+        plt.savefig(buffer, format='png', dpi=300)  # Set dpi to 300 for sharper image
         plt.close()
         buffer.seek(0)
         image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
@@ -30,5 +30,3 @@ def generate_signals_plot(data, fpt):
     except Exception as e:
         print(e)
         return None
-
-

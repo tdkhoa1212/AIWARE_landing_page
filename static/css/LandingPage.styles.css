@@ -1,22 +1,13 @@
-/* :root {
-    --hover-background-color: #f0f0f0;
-    --primary-color: #2C3D4F;
-    --secondary-color: #6f6f6f;
-    --background-color: #f8f8f8;
-    --border-color: #637282;
-    --image-shadow: 2px 2px 4px rgba(0, 0, 0.2, 0.2);
-} */
-
 .gradient-text {
     background: linear-gradient(to right, #70B5FF, #70E2FF, #7088FF, #4CFCE7, #8670FF); 
-    filter: brightness(75%);
+    filter: brightness(100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 :root {
     --hover-background-color: #f0f0f0;
-    --primary-color: #f8f8f8;
+    --primary-color: #E9E7E5;
     --secondary-color: rgba(233, 231, 229, 0.65);
     --background-color: black;
     --border-color: #2C3D4F;
@@ -35,8 +26,6 @@ ul, p, u, label, select {
     font-size: 1.25em;
     margin-bottom: 1em;
 }
-
-
 
 li{
     margin-left: 0.6em;
@@ -132,6 +121,7 @@ body, html {
 }
 
 .btn-primary, .btn-secondary {
+    background-color: var(--border-color);
     border: 1px solid var(--border-color);
     border-radius: 1.25em; /* You had this already correct */
 }

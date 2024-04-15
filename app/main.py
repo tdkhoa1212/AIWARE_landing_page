@@ -5,8 +5,14 @@ from fastapi.templating import Jinja2Templates
 import os
 from .routers import User, Auth, Verification, Products, Contact, About, Signals
 import uvicorn
+from app.models.Contact import Base # If required here
+from app.Database import engine
+
 
 app = FastAPI()
+
+# Create the database tables if they don't exist
+Base.metadata.create_all(bind=engine) 
 
 # ----------- Mounting the static files directory -----------
 app.mount("/static", StaticFiles(directory="static"), name="static")

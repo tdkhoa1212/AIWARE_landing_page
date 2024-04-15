@@ -1,15 +1,58 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const techniqueSelector = document.getElementById('techniqueSelector');
+    // DOM Elements
     const conditionSelector = document.getElementById('conditionSelector');
+    const filterSelector = document.getElementById('filterSelector');
     const axisSelector = document.getElementById('axisSelector');
-    const filterSelector = document.getElementById('filterSelector')
     const image = document.getElementById('signalPlot');
+    const techniqueRadios = document.querySelectorAll('input[name="techniqueSelector"]');
+    const techniqueSelector1 = document.getElementById('techniqueSelector1');
+    const techniqueSelector2 = document.getElementById('techniqueSelector2');
+    let techniqueSelectorValue = null; 
+
+    // Initialize
+    const initialTechniqueRadio = document.querySelector('input[name="techniqueSelector"]:checked');
+    if (initialTechniqueRadio) {
+        updateTechniqueSelector(initialTechniqueRadio.value);
+    } else {
+        console.error('No initial technique radio button is selected.');
+    }
+
+    // Functions
+    function updateTechniqueSelector(value) {
+        if (value === "technique1") {
+            techniqueSelector1.disabled = false;
+            techniqueSelector2.disabled = true;
+            techniqueSelectorValue = techniqueSelector1.value;
+            updateFilterSelector(techniqueSelectorValue);
+        } else if (value === "technique2") {
+            techniqueSelector1.disabled = true;
+            techniqueSelector2.disabled = false;
+            techniqueSelectorValue = techniqueSelector2.value;
+            console.log(techniqueSelectorValue);
+            updateFilterSelector(techniqueSelectorValue);
+        }
+    }
     
-    // Function to fetch and update the plot image
+    function updateFilterSelector(techniqueSelectorValue) {
+        console.log(techniqueSelectorValue)
+        if (techniqueSelectorValue == "Magnitude") {
+            filterSelector.value = "none";
+            filterSelector.disabled = true;
+        } else {
+            filterSelector.disabled = false;
+        }
+    }
+
+    function initialParameters(){
+        if (conditionSelector.value, techniqueSelectorValue, axisSelector.value, filterSelector.value){
+            fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, axisSelector.value, filterSelector.value);
+        }
+    }
+
     function fetchAndUpdatePlot(condition, technique, axis, filter) {
         if (condition && technique) {
-            image.style.display = 'none';  // Hide image until new plot is fetched
-            document.getElementById('loadingIndicator').style.display = 'block'; // Show loading wheel
+            image.style.display = 'none';  
+            document.getElementById('loadingIndicator').style.display = 'block'; 
 
             fetch(`/signals/plot?condition=${encodeURIComponent(condition)}&technique=${encodeURIComponent(technique)}&axis=${encodeURIComponent(axis)}&filter=${encodeURIComponent(filter)}`)
                 .then(response => {
@@ -32,26 +75,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('Error fetching the signal plot:', error);
                 });
         } else {
-            image.style.display = 'none';  // Hide image if condition or technique is not provided
+            image.style.display = 'none';  
         }
     }
 
-    // default values are set
-    if (techniqueSelector.value && conditionSelector.value && axisSelector.value && filterSelector.value) {
-        fetchAndUpdatePlot(conditionSelector.value, techniqueSelector.value, axisSelector.value, filterSelector.value);
-    }
-    
-    // changed values are set
-    conditionSelector.addEventListener('change', function() {
-        fetchAndUpdatePlot(this.value, techniqueSelector.value, axisSelector.value, filterSelector.value);
+    // Event Listeners
+    techniqueRadios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            updateTechniqueSelector(this.value);
+            initialParameters();
+        });
+    });    
+
+    initialParameters();
+
+    techniqueSelector1.addEventListener('change', function() {
+        updateFilterSelector(techniqueSelector1.value);
     });
-    techniqueSelector.addEventListener('change', function() {
+    techniqueSelector2.addEventListener('change', function() {
+        updateFilterSelector(techniqueSelector2.value);
+    });
+
+    conditionSelector.addEventListener('change', function() {
+        fetchAndUpdatePlot(this.value, techniqueSelectorValue, axisSelector.value, filterSelector.value);
+    });
+    techniqueSelector1.addEventListener('change', function() {
+        fetchAndUpdatePlot(conditionSelector.value, this.value, axisSelector.value, filterSelector.value);
+    });
+    techniqueSelector2.addEventListener('change', function() {
         fetchAndUpdatePlot(conditionSelector.value, this.value, axisSelector.value, filterSelector.value);
     });
     axisSelector.addEventListener('change', function() {
-        fetchAndUpdatePlot(conditionSelector.value, techniqueSelector.value, this.value, filterSelector.value);
+        fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, this.value, filterSelector.value);
     });
     filterSelector.addEventListener('change', function() {
-        fetchAndUpdatePlot(conditionSelector.value, techniqueSelector.value, axisSelector.value, this.value);
+        fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, axisSelector.value, this.value);
     });
 });
