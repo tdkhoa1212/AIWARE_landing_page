@@ -74,9 +74,17 @@
     border-bottom: 0.01em solid var(--border-color); /* This sets just the bottom border */
   }
   
+  .form-container {
+    position: relative;
+  }
+  
+  .loader {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+  }
 </style>
-
-<!-- Add this script in your Contact.html template file -->
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -84,25 +92,47 @@
       // Prevent the default form submission behavior
       event.preventDefault();
       
-      // Submit the form data using fetch API
-      let formData = new FormData(event.target);
-      let response = await fetch("/Contact", {
-        method: "POST",
-        body: formData
-      });
-      
-      // Check if the form submission was successful based on the response status
-      if (response.ok) {
-        // Show the pop-up window with the message
-        alert("Thanks, we'll connect with you as soon as possible.");
-        window.location.reload();
-      } else {
-        // Handle error case if needed
-        alert("Failed to submit the form. Please try again.");
+      // Show loading animation
+      showLoading();
+
+      try {
+        // Submit the form data using fetch API
+        let formData = new FormData(event.target);
+        let response = await fetch("/Contact", {
+          method: "POST",
+          body: formData
+        });
+
+        // Check if the form submission was successful based on the response status
+        if (response.ok) {
+          // Show the pop-up window with the message
+          alert("Thank you for contacting us. We will connect with you as soon as possible.");
+          window.location.reload();
+        } else {
+          // Handle error case if needed
+          alert("Failed to submit the form. Please try again.");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+        alert("An error occurred. Please try again.");
+      } finally {
+        // Hide loading animation
+        hideLoading();
       }
     });
+
+    // Function to show loading animation
+    function showLoading() {
+      document.getElementById("loadingIndicator").style.display = "block";
+    }
+
+    // Function to hide loading animation
+    function hideLoading() {
+      document.getElementById("loadingIndicator").style.display = "none";
+    }
   });
-  </script>
+</script>
+
   
   
 <body>
@@ -240,6 +270,8 @@
             </div>
 
             <div class="col-md-7 section3-right-section">
+              <div class="form-container" style="position: relative;"></div>
+              <div id="loadingIndicator" class="loader" style="display: none;"></div>
               <form id="contactForm" action="/Contact" method="post">
                 <div class="row mb-4">
                   <div class="col mx-3">
@@ -279,25 +311,25 @@
                     </div>
                     <div class="row">
                       <div class="form-check col">
-                        <input class="form-check-input" type="radio" name="selectField" id="field1" value="field1" checked>
+                        <input class="form-check-input" type="radio" name="selectField" id="field1" value="Rotating_Machines_and_Batteries" checked>
                         <label class="form-check-label" for="field1" style="color: var(--background-color);">
                           Rotating Machines & Batteries
                         </label>
                       </div>
                       <div class="form-check col">
-                        <input class="form-check-input" type="radio" name="selectField" id="field2" value="field2">
+                        <input class="form-check-input" type="radio" name="selectField" id="field2" value="Time_Series_Data_Analysis">
                         <label class="form-check-label" for="field2" style="color: var(--background-color);">
                           Time-Series Data Analysis
                         </label>
                       </div>
                       <div class="form-check col">
-                        <input class="form-check-input" type="radio" name="selectField" id="field3" value="field3">
+                        <input class="form-check-input" type="radio" name="selectField" id="field3" value="Sound_Image_Processing">
                         <label class="form-check-label" for="field3" style="color: var(--background-color);">
                           Sound & Image Processing
                         </label>
                       </div>
                       <div class="form-check col">
-                        <input class="form-check-input" type="radio" name="selectField" id="field4" value="field4">
+                        <input class="form-check-input" type="radio" name="selectField" id="field4" value="Others">
                         <label class="form-check-label" for="field4" style="color: var(--background-color);">
                           Others
                         </label>
@@ -313,7 +345,9 @@
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
-          </div>
+            </div>
+          </div> 
+
         </div>
     </div>
 </section>

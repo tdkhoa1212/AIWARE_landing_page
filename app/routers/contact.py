@@ -16,10 +16,10 @@ def send_email(first_name, last_name, email, company, phone, role, select_field,
 
     msg = MIMEMultipart()
     msg['From'] = from_email
-    msg['To'] = "khoa.tran@aiware.website"
-    msg['Subject'] = "New contact"
+    msg['To'] = "tdkhoa1212@gmail.com"
+    msg['Subject'] = "New AIWARE Contact"
 
-    body = f"First Name: {first_name}\nLast Name: {last_name}\nEmail: {email}\nCompany: {company}\nPhone: {phone}\nRole: {role}\nField: {select_field}\nMessage: {message}"
+    body = f"First Name: {first_name}\nLast Name: {last_name}\nEmail: {email}\nCompany: {company}\nPhone: {phone}\nRole: {role}\nField: {select_field}\n\nMessage: \n{message}"
     msg.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -44,6 +44,42 @@ def get_db():
 async def read_contact(request: Request):
     return templates.TemplateResponse("Contact.html", {"request": request})
 
+# @router.post("/Contact", response_class=HTMLResponse)
+# async def submit_contact(request: Request, 
+#                          firstName: str = Form(...), 
+#                          lastName: str = Form(...), 
+#                          email: str = Form(...),
+#                          company: str = Form(...),
+#                          phone: str = Form(...),
+#                          role: str = Form(...),
+#                          selectField: str = Form(...),
+#                          message: str = Form(...),
+#                          db: Session = Depends(get_db)):
+    
+#     contact = Contact(
+#         first_name=firstName,
+#         last_name=lastName,
+#         email=email,
+#         company=company,
+#         phone=phone,
+#         role=role,
+#         select_field=selectField,
+#         message=message
+#     )
+
+#     db.add(contact)
+
+#     try:
+#         db.commit()
+#         db.refresh(contact)
+
+#         send_email(firstName, lastName, email, company, phone, role, selectField, message)
+#     except Exception as e:
+#         db.rollback()
+#         raise HTTPException(status_code=500, detail=str(e))
+
+#     return templates.TemplateResponse("Contact.html", {"request": request})
+
 @router.post("/Contact", response_class=HTMLResponse)
 async def submit_contact(request: Request, 
                          firstName: str = Form(...), 
@@ -53,43 +89,12 @@ async def submit_contact(request: Request,
                          phone: str = Form(...),
                          role: str = Form(...),
                          selectField: str = Form(...),
-                         message: str = Form(...),
-                         db: Session = Depends(get_db)):
-    # Access form data directly as function parameters
-    print("First Name:", firstName)
-    print("Last Name:", lastName)
-    print("Email:", email)
-    print("company:", company)
-    print("phone: ", phone)
-    print("role:", role)
-    print("selectField:", selectField)
-    print("message:", message)
+                         message: str = Form(...)):
     
-    contact = Contact(
-        first_name=firstName,
-        last_name=lastName,
-        email=email,
-        company=company,
-        phone=phone,
-        role=role,
-        select_field=selectField,
-        message=message
-    )
-
-    # Add the contact to the database session
-    db.add(contact)
-
     try:
-        # Commit the changes to the database
-        db.commit()
-        # Refresh the contact object to get its updated state from the database
-        db.refresh(contact)
-
+        # Send email
         send_email(firstName, lastName, email, company, phone, role, selectField, message)
     except Exception as e:
-        # Rollback the transaction if an error occurs
-        db.rollback()
-        # Raise an HTTP exception with the error details
         raise HTTPException(status_code=500, detail=str(e))
 
     return templates.TemplateResponse("Contact.html", {"request": request})
