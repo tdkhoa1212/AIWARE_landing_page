@@ -1,15 +1,15 @@
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-import pymongo
+# from sqlalchemy import create_engine, text
+# from sqlalchemy.orm import sessionmaker
+# from sqlalchemy.ext.declarative import declarative_base
+# import pymongo
 
-URL_DATABASE = 'mysql+pymysql://root:!AIWARE!@localhost:3306/AIWARE'
+# URL_DATABASE = 'mysql+pymysql://root:!AIWARE!@localhost:3306/AIWARE'
 
-engine = create_engine(URL_DATABASE)
+# engine = create_engine(URL_DATABASE)
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+# Base = declarative_base()
 
 # def check_database_connection():
 #     try:

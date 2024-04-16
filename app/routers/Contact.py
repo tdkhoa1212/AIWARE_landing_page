@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.responses import HTMLResponse
-from app.Database import SessionLocal
+# from app.Database import SessionLocal
 from fastapi.templating import Jinja2Templates
 from app.schemas.contact_schema import ContactForm
-from app.models.Contact import Contact
+# from app.models.Contact import Contact
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Form
 import smtplib
@@ -32,13 +32,12 @@ def send_email(first_name, last_name, email, company, phone, role, select_field,
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
-# Dependency to get the database session
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# def get_db():
+#     db = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 @router.get("/Contact", response_class=HTMLResponse)
 async def read_contact(request: Request):

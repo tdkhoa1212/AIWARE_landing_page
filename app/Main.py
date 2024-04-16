@@ -6,7 +6,7 @@ import os
 from .routers import User, Auth, Verification, Products, Contact, About, Signals
 import uvicorn
 # from app.models.Contact import Base # If required here
-from app.Database import engine
+# from app.Database import engine
 
 
 app = FastAPI()
@@ -34,7 +34,7 @@ async def read_template(request: Request, template_name: str):
 
 # ----------- Including router -----------
 app.include_router(User.router)
-app.include_router(Auth.router)
+# app.include_router(Auth.router)
 app.include_router(Verification.router, prefix="/verification") 
 app.include_router(Products.router)
 app.include_router(Contact.router)
