@@ -54,7 +54,6 @@ def Zero_crossing_Rate(signal):
     return zcr
 
 def preprocess_signals(data, technique, axis, filter):
-    print(technique)
     apart_data = data[:, :, 0] if axis == 'horizontal' else data[:, :, 1]
     
     # Processing the signals based on technique

@@ -13,21 +13,26 @@ from email.mime.text import MIMEText
 def send_email(first_name, last_name, email, company, phone, role, select_field, message):
     from_email = "AIWARE.ai.tech@gmail.com"
     from_password = "xmaf glwn ndls qokw"
+    to_email = "khoa.tran@aiware.website"
 
     msg = MIMEMultipart()
     msg['From'] = from_email
-    msg['To'] = "tdkhoa1212@gmail.com"
+    msg['To'] = to_email
     msg['Subject'] = "New AIWARE Contact"
 
     body = f"First Name: {first_name}\nLast Name: {last_name}\nEmail: {email}\nCompany: {company}\nPhone: {phone}\nRole: {role}\nField: {select_field}\n\nMessage: \n{message}"
     msg.attach(MIMEText(body, 'plain'))
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(from_email, from_password)
-    server.sendmail(from_email, email, msg.as_string())
-    server.quit()
-
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(from_email, from_password)
+        server.sendmail(from_email, to_email, msg.as_string())
+        print("Email sent successfully!")
+    except Exception as e:
+        print("Error sending email:", e)
+    finally:
+        server.quit()
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")

@@ -7,30 +7,30 @@
 
 <style>
   /* =========================== SECTION 1 | CSS ==========================*/
-    .section1-background {
-        position: relative;
-        height: 30em;
-        background-image: url('/static/images/aiware-rotating-machinery.png');
-        background-size: cover;
-        background-position: center;
-        border-radius: 0.25em; /* Top-left, Top-right, Bottom-right, Bottom-left */
-        overflow: hidden; 
-        box-shadow: inset 0 -2em 2em -0.2em rgba(0, 0, 0, 1);
-    }
-    .section1-background::before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at left center, rgba(0, 0, 0, 0.95) 30%, rgba(0, 0, 0, 0.8) 100%, transparent 100%);      
-      border-radius: inherit; /* Ensure the border-radius is applied to gradient */
+  .section1-background {
+    position: relative;
+    height: 30em;
+    background-image: url('/static/images/aiware-rotating-machinery.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.25em; /* Top-left, Top-right, Bottom-right, Bottom-left */
+    overflow: hidden; 
+    box-shadow: inset 0 -2em 2em -0.2em rgba(0, 0, 0, 1);
+  }
+  .section1-background::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.5) 100%, transparent 100%);
+    border-radius: inherit; 
   }
   .section1-header{
     font-size: 6em;
-    margin-top: 1.2em;
+    margin-top: 2em;
     text-transform: uppercase;
     text-align: center;
   }
@@ -84,49 +84,46 @@
     left: 0%;
     transform: translate(-50%, -50%);
   }
+
+  .section3-indicator{
+    width: 6em; height: 6em; position: absolute; top:0; margin: 1em; margin-left: 2em; display: none;
+  }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("contactForm").addEventListener("submit", async function(event) {
-      // Prevent the default form submission behavior
       event.preventDefault();
-      
-      // Show loading animation
       showLoading();
 
       try {
-        // Submit the form data using fetch API
         let formData = new FormData(event.target);
         let response = await fetch("/Contact", {
           method: "POST",
           body: formData
         });
 
-        // Check if the form submission was successful based on the response status
         if (response.ok) {
-          // Show the pop-up window with the message
+          hideLoading();
           alert("Thank you for contacting us. We will connect with you as soon as possible.");
           window.location.reload();
-        } else {
-          // Handle error case if needed
+        } 
+        else {
+          hideLoading();
           alert("Failed to submit the form. Please try again.");
         }
-      } catch (error) {
+      } 
+      catch (error) {
+        hideLoading();
         console.error("An error occurred:", error);
         alert("An error occurred. Please try again.");
-      } finally {
-        // Hide loading animation
-        hideLoading();
-      }
+      } 
     });
 
-    // Function to show loading animation
     function showLoading() {
       document.getElementById("loadingIndicator").style.display = "block";
     }
 
-    // Function to hide loading animation
     function hideLoading() {
       document.getElementById("loadingIndicator").style.display = "none";
     }
@@ -270,8 +267,6 @@
             </div>
 
             <div class="col-md-7 section3-right-section">
-              <div class="form-container" style="position: relative;"></div>
-              <div id="loadingIndicator" class="loader" style="display: none;"></div>
               <form id="contactForm" action="/Contact" method="post">
                 <div class="row mb-4">
                   <div class="col mx-3">
@@ -343,10 +338,14 @@
                   <textarea id="message" name="message" style="background-color: white; border-radius: 0.125em;" class="form-control section3-input" rows="5" placeholder="Enter your message here..." required></textarea>
                 </div>
                 <div class="row">
+                  <div class="col">
+                    <div id="loadingIndicator" class="loader section3-indicator"></div> 
+                  </div>
                   <div class="col text-end">
-                      <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                      <button type="submit" class="btn btn-primary mt-2" style="float: right;">Submit</button>
                   </div>
                 </div>
+                
               </form>
             </div>
           </div> 
