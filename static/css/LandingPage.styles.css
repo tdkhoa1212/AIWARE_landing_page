@@ -56,7 +56,7 @@
     --secondary-color: rgba(233, 231, 229, 0.65);
     --background-color: black;
     --border-color: #2C3D4F;
-    --image-shadow: 2px 2px 4px rgba(0, 0, 0.2, 0.2);
+    --image-shadow: 0.125em  0.125em 0.25em rgba(0, 0, 0.2, 0.2);
 }
 
 .box-transition{
@@ -154,7 +154,7 @@ body, html {
     padding: 0.3125em 0.625em; 
     color: var(--background-color);
     background-color: var(--primary-color);
-    border: 1px solid var(--border-color);
+    border: 0.0625em solid var(--border-color);
     border-radius: 1.25em; 
     display: inline-block;
     letter-spacing: 0.0625em; 
