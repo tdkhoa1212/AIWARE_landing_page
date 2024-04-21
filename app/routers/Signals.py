@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 import pickle
 import logging
-from app.services.Visualization_service import generate_signals_plot
+from app.services.Visualization_service import generate_signals_plot, generate_labels_plot
 from app.utils.Common_utils import preprocess_signals, predict_time
 
 router = APIRouter()
@@ -33,10 +33,11 @@ def get_signals_plot(condition: str, technique: str, axis: str, filter: str):  #
         if technique != 'Magnitude':
             fpt = predict_time(processed_data)
 
-        plot = generate_signals_plot(processed_data, fpt)
+        signals_plot = generate_signals_plot(processed_data, fpt)
+        labels_plot = generate_labels_plot(processed_data, fpt)
         
         # Return the generated plot as a base64 image within a JSON response
-        return {"image": plot}
+        return {"signals": signals_plot, "labels": labels_plot}
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}", exc_info=True)
         # Return a general error message to the client

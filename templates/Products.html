@@ -54,16 +54,22 @@
         padding: 0.5em;
     }
 
-    
-
     .section2-image {
-        width: 60em;
-        float: left; /* Align the image to the left */
-        clear: both; /* Clear floats */
-        margin-left: 5em;
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensure the image behaves as a block element */
+        margin: 0 auto; /* Center the image horizontally */
     }
     
-    
+
+    /* =========================== SECTION 2 | CSS ==========================*/
+    .section2-part1{
+        border-radius: 1.25em;
+        border: 0.0625em solid var(--primary-color);
+        margin-top: 5em;;
+        padding: 1em;
+        padding-bottom: 3em;
+    }
 </style>
 
 <script>
@@ -118,9 +124,9 @@
     {# @*========================================== SECTION 2 ==========================================*@ #}
     <section class="page-banner text-center">
         <div class="container section2-container">
-            <div class="row mb-4" >
-                <h2 class="gradient-text" style="text-transform: uppercase;">
-                    <b>Initial Degradation Time Prediction:
+            <div class="row mb-4">
+                <h2 class="gradient-text text-uppercase">
+                    <b>setting parameters
                     </b> 
                 </h2>
             </div>
@@ -199,12 +205,25 @@
 
                 </div>
             </div>
-                     
-            <div class="row">
-                <div id="loadingIndicator" class="loader" style="display: none;"></div>
-                <img class="section2-image" id="signalPlot" src="#" alt="Signal Plot" style="display:none;">
-                <script src="/static/js/Visualize_signals.js"></script>
-            </div>            
+            <div id="loadingIndicator" class="loader" style="display: none;"></div>
+            <div class="row text-center section2-part1">
+                <div class="col-4 align-self-center">
+                    <b><h2 class="gradient-text text-uppercase">INITIAL DEGRADATION TIME PREDICTION</h2></b>
+                </div>
+                <div class="col">
+                    <img class="section2-image" id="signalsPlot" src="#" alt="Signal Plot" style="display:none;">
+                    <script src="/static/js/Visualize_signals.js"></script>
+                </div>
+            </div>
+            <div class="row text-center section2-part1">
+                <div class="col">
+                    <img class="section2-image" id="labelsPlot" src="#" alt="Signal Plot" style="display:none;">
+                    <script src="/static/js/Visualize_signals.js"></script>
+                </div>
+                <div class="col-4 align-self-center">
+                    <b><h2 class="gradient-text text-uppercase">Remaining Useful Life (RUL) PREDICTION</h2></b>
+                </div>
+            </div>           
         </div>
     </section>
 </body>

@@ -3,11 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const conditionSelector = document.getElementById('conditionSelector');
     const filterSelector = document.getElementById('filterSelector');
     const axisSelector = document.getElementById('axisSelector');
-    const image = document.getElementById('signalPlot');
+    
     const techniqueRadios = document.querySelectorAll('input[name="techniqueSelector"]');
     const techniqueSelector1 = document.getElementById('techniqueSelector1');
     const techniqueSelector2 = document.getElementById('techniqueSelector2');
     let techniqueSelectorValue = null; 
+
+    const signalsPlot = document.getElementById('signalsPlot');
+    const labelsPlot = document.getElementById('labelsPlot');
 
     // Initialize
     const initialTechniqueRadio = document.querySelector('input[name="techniqueSelector"]:checked');
@@ -51,7 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function fetchAndUpdatePlot(condition, technique, axis, filter) {
         if (condition && technique) {
-            image.style.display = 'none';  
+            signalsPlot.style.display = 'none';  
+            labelsPlot.style.display = 'none';  
+
             document.getElementById('loadingIndicator').style.display = 'block'; 
 
             fetch(`/signals/plot?condition=${encodeURIComponent(condition)}&technique=${encodeURIComponent(technique)}&axis=${encodeURIComponent(axis)}&filter=${encodeURIComponent(filter)}`)
@@ -63,9 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .then(data => {
                     document.getElementById('loadingIndicator').style.display = 'none'; 
-                    if (data.image) {
-                        image.src = 'data:image/png;base64,' + data.image;
-                        image.style.display = 'block';
+                    if (data.signals) {
+                        signalsPlot.src = 'data:signals/png;base64,' + data.signals;
+                        signalsPlot.style.display = 'block';
+
+                        labelsPlot.src = 'data:labels/png;base64,' + data.labels;
+                        labelsPlot.style.display = 'block';
                     } else {
                         throw new Error('No image data received from the server.');
                     }
@@ -75,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('Error fetching the signal plot:', error);
                 });
         } else {
-            image.style.display = 'none';  
+            signalsPlot.style.display = 'none';  
+            labelsPlot.style.display = 'none';
         }
     }
 

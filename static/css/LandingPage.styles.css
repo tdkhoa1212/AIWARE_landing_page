@@ -1,8 +1,8 @@
 .loader,
 .loader:after {
     border-radius: 50%;
-    width: 0.625em;
-    height: 0.625em;
+    width: 10.25em; 
+    height: 10.25em;
 }
 .loader {
     margin: 3.75em auto;
@@ -83,12 +83,6 @@ header {
     text-align: center;
 }
 
-body {
-    font-family: MetricHPEXS,Arial,sans-serif;
-    background-color: var(--background-color);
-    color: var(--primary-color);
-}
-
 h1 {
     font-size: 3.5em; /* Adjust based on your design */
     margin-bottom: 0.5em; /* Add spacing between h1 and subsequent elements */
@@ -146,8 +140,26 @@ footer {
     margin-bottom: 9em;
 }
 
-body, html {
-    overflow-x: hidden;
+body {
+    font-family: MetricHPEXS,Arial,sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    display: block;
+
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    max-width: auto;
+    overflow: hidden; 
+    overflow-y:scroll; /* Enable vertical scrolling if content overflows */
+    display: block;
+}
+
+div {
+    display: block;
 }
 
 .button_slide {
@@ -164,6 +176,7 @@ body, html {
     -moz-transition: ease-out 0.4s;
     transition: ease-out 0.4s;
 }
+
 
 .btn-primary, .btn-secondary {
     background-color: var(--border-color);

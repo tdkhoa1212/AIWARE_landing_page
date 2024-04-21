@@ -1,8 +1,8 @@
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">    
     <title>{% block title %}AIWARE{% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="/static/images/logo/AIWARE_darkblue.png" style="width: 3em;">
+    <link rel="icon" type="image/png" href="/static/images/logo/AIWARE_avatar.png">
     <link rel="stylesheet" href="/static/css/LandingPage.styles.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
@@ -46,9 +46,14 @@
             border: 0.0625em solid var(--border-color);
             padding: 0;
         }
-        
     </style>
+    <script>
+        jQuery(document).ready(function(){
+        jQuery('meta[name="viewport"]').prop('content', 'width=1920');
+        });
+    </script>
 </head>
+
 <body>
     <header class="pt-2">
         <nav class="navbar-expand-sm navbar-light">
@@ -83,8 +88,8 @@
                     <div class="col"></div>
                     <div class="col d-flex justify-content-center align-items-center mt-2">
                         <ul class="navbar-nav" style="width: auto;">
-                            <li class="nav-item " style="margin-left: 0.1em;">
-                                <a class="nav-link button-contact button_slide slide_right" href="Contact" style="line-height: 1.4em;">CONTACT &#187;</a>
+                            <li class="nav-item " style="margin-left: 0.1em; margin-top: -0.3em;">
+                                <a class="nav-link button-contact button_slide slide_right" href="Contact" style="line-height: 1.2em;">CONTACT &#187;</a>
                             </li>
                         </ul>
                     </div>                    
