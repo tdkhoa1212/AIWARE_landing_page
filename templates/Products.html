@@ -87,7 +87,7 @@
 
     .slider input[type="range"]::-webkit-slider-thumb {
         border-radius: 1.25em;
-        border: 0.2em solid var(--border-color);
+        border: 0.1em solid var(--border-color);
         -webkit-appearance: none;
         appearance: none;
         width: 1.5625em;
@@ -99,14 +99,25 @@
         display: flex;
         justify-content: center; 
         align-items: center; 
+        border: none;
+    }
+
+    .slider-container{
+        border-radius: 0.75em;
+        border: 0.1em solid var(--border-color);
+        padding-top: 1.3em;
+        margin-bottom: 1em;
     }
 
     .monitor{
         font-size: 2.8em;
         border-radius: 0.25em;
-        border: 0.0625em solid var(--border-color);
-        padding: 0.5em;
-        margin-bottom: 0.5em;
+        border: 0.03em solid var(--border-color);
+        padding: 0.2em;
+        padding-left: 0.4em;
+        padding-right: 0.4em;
+        margin-top: 1em;
+        margin-bottom: 0.4em;
         display: flex;
         justify-content: center; 
         align-items: center; 
@@ -225,10 +236,8 @@
                         <input type="radio" id="techniqueRadio1" name="techniqueSelector" value="technique1" class="mb-3 mx-3" checked>
                         <label for="techniqueRadio1" class="section2-label">Time Domain Technique:</label>
                         <select id="techniqueSelector1" class="section2-dropdown">
-                            <option value="Magnitude">Magnitude Analysis</option>
                             <option value="RMS" selected>Root Mean Square (RMS)</option>
                             <option value="P2P">Peak-to-Peak (P2P)</option>
-                            <option value="Mean">Mean</option>
                             <option value="STD">Standard Deviation (STD)</option>
                             <option value="Skewness">Skewness</option>
                             <option value="ZCR">Zero Crossing Rate (ZCR)</option>
@@ -252,16 +261,19 @@
             <div class="row text-center section2-part1">
                 <div class="col-4 align-self-center">
                     <h2 class="gradient-text text-uppercase"><b>Processed signals</b></h2>
-                    <h4>Processed Signal Value: </h4>
-                    <div class="monitor-container">
-                        <div class="monitor" id="signal_monitor">
+                    <div class="slider-container">
+                        <div class="slider">
+                            <input type="range" min="0" max="100" value="0" id="signal_slider">
+                        </div>
+                        <p style="color: var(--secondary-color);">Input data at time (minutes): <span id="signal_time"></span></p>
+                    </div>
+                    <h3 class="mb-2 font-weight-bold">Input</h3>
+                    <div class="monitor-container mt-3">
+                        <div class="monitor">
+                            <span id="signal_monitor"></span> &nbsp; <i class="fas fa-bolt"></i> 
                         </div>
                     </div>
-                    <div class="slider">
-                        <input type="range" min="0" max="100" value="0" id="signal_slider">
-                    </div>
-                    <p>Time (minutes): <span id="signal_time"></span></p>
-                    <p style="color: var(--secondary-color);">Adjust the slider above <i class="fas fa-arrow-up"></i></p>
+                    <h3 class="font-weight-bold"><span id="Processed_signal_type"></span> Output</h3>
                 </div>
                 <div class="col">
                     <img class="section2-image" id="signalsPlot" src="#" alt="Signal Plot" style="display:none;">
@@ -275,18 +287,21 @@
                 </div>
                 <div class="col-4 align-self-center">
                     <h2 class="gradient-text text-uppercase"><b>Remaining Useful Life (RUL) PREDICTION</b></h2>
-                    <h4>Predicted RUL: </h4>
-                    <div class="monitor-container">
+
+                    <div class="slider-container">
+                        <div class="slider">
+                            <input type="range" min="0" max="100" value="0" id="label_slider">
+                        </div>
+                        <p style="color: var(--secondary-color);">Input data at time (minutes): <span id="label_time"></span></p>
+                    </div>
+                    <h3 class="mb-2 font-weight-bold">Input</h3>
+
+                    <div class="monitor-container mt-3">
                         <div class="monitor">
                             <span id="label_monitor"></span>%
                         </div>
                     </div>
-                    <div class="slider">
-                        <input type="range" min="0" max="100" value="0" id="label_slider">
-                    </div>
-                    
-                    <p>Time (minutes): <span id="label_time"></span></p>
-                    <p style="color: var(--secondary-color);">Adjust the slider above <i class="fas fa-arrow-up"></i></p>
+                    <h3 class="font-weight-bold">Predicted RUL Output</h3>
                 </div>
             </div>           
         </div>

@@ -32,12 +32,12 @@ def get_signals_plot(condition: str, technique: str, axis: str, filter: str):
         data = get_signals_data(condition)
         processed_data = preprocess_signals(data, technique, axis, filter)
         
-        if technique != 'Magnitude':
-            fpt = predict_time(processed_data)
+        fpt = predict_time(processed_data)
 
         signals_plot = generate_signals_plot(processed_data, fpt)
         labels_plot, predicted_labels = generate_labels_plot(processed_data, fpt)
 
+        print(processed_data);
         processed_data_json = [round(value, 2) for value in processed_data.tolist()]
         predicted_labels_json = [round(value, 2) for value in predicted_labels.tolist()]
 

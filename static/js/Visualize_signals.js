@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const techniqueSelector1 = document.getElementById('techniqueSelector1');
     const techniqueSelector2 = document.getElementById('techniqueSelector2');
     let techniqueSelectorValue = null; 
+    const Processed_signal_type = document.getElementById('Processed_signal_type')
 
     const signalsPlot = document.getElementById('signalsPlot');
     const labelsPlot = document.getElementById('labelsPlot');
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initialParameters(){
+        Processed_signal_type.innerText = techniqueSelectorValue;
         if (conditionSelector.value, techniqueSelectorValue, axisSelector.value, filterSelector.value){
             fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, axisSelector.value, filterSelector.value)
                 .then(() => {
@@ -138,18 +140,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     conditionSelector.addEventListener('change', function() {
+        Processed_signal_type.innerText = techniqueSelectorValue;
         fetchAndUpdatePlot(this.value, techniqueSelectorValue, axisSelector.value, filterSelector.value);
     });
     techniqueSelector1.addEventListener('change', function() {
+        Processed_signal_type.innerText = this.value;
         fetchAndUpdatePlot(conditionSelector.value, this.value, axisSelector.value, filterSelector.value);
     });
     techniqueSelector2.addEventListener('change', function() {
+        Processed_signal_type.innerText = this.value;
         fetchAndUpdatePlot(conditionSelector.value, this.value, axisSelector.value, filterSelector.value);
     });
     axisSelector.addEventListener('change', function() {
+        Processed_signal_type.innerText = techniqueSelectorValue;
         fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, this.value, filterSelector.value);
     });
     filterSelector.addEventListener('change', function() {
+        Processed_signal_type.innerText = techniqueSelectorValue;
         fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, axisSelector.value, this.value);
     });
 

@@ -57,14 +57,10 @@ def preprocess_signals(data, technique, axis, filter):
     apart_data = data[:, :, 0] if axis == 'horizontal' else data[:, :, 1]
     
     # Processing the signals based on technique
-    if technique == 'Magnitude':
-        processed_data = np.concatenate((apart_data), axis=None)  # Assuming concatenation along a flat structure
-    elif technique == 'RMS':
+    if technique == 'RMS':
         processed_data = np.array([calculate_rms(i) for i in apart_data])
     elif technique == 'P2P':
         processed_data = np.array([np.ptp(i) for i in apart_data])
-    elif technique == 'Mean':
-        processed_data = np.array([np.mean(i) for i in apart_data])
     elif technique == 'STD':
         processed_data = np.array([np.std(i) for i in apart_data])
     elif technique == 'Skewness':
