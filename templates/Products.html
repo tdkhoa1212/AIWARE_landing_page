@@ -61,14 +61,56 @@
         margin: 0 auto; /* Center the image horizontally */
     }
     
-
-    /* =========================== SECTION 2 | CSS ==========================*/
     .section2-part1{
         border-radius: 1.25em;
         border: 0.0625em solid var(--primary-color);
         margin-top: 5em;;
         padding: 1em;
         padding-bottom: 3em;
+    }
+
+    .slider {
+        width: 100%;
+    }
+
+    .slider input[type="range"] {
+        border-radius: 1.25em;
+        border: 0.125em solid var(--border-color);
+        -webkit-appearance: none;
+        width: 90%;
+        height: 1.5625em;
+        background: var(--primary-color);
+        outline: none;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider input[type="range"]::-webkit-slider-thumb {
+        border-radius: 1.25em;
+        border: 0.2em solid var(--border-color);
+        -webkit-appearance: none;
+        appearance: none;
+        width: 1.5625em;
+        height: 1.5625em;
+        cursor: pointer;
+    }
+
+    .monitor-container{
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+    }
+
+    .monitor{
+        font-size: 2.8em;
+        border-radius: 0.25em;
+        border: 0.0625em solid var(--border-color);
+        padding: 0.5em;
+        margin-bottom: 0.5em;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        text-align: center;
     }
 </style>
 
@@ -99,8 +141,9 @@
         conditionSelector.addEventListener('change', function() {
             UpdateDescription(this.value);
         });
-    });    
+    });  
 </script>
+
 
 <body>
     {# @*========================================== SECTION 1 ==========================================*@ #}
@@ -124,7 +167,7 @@
     {# @*========================================== SECTION 2 ==========================================*@ #}
     <section class="page-banner text-center">
         <div class="container section2-container">
-            <div class="row mb-4">
+            <div class="row mb-1">
                 <h2 class="gradient-text text-uppercase">
                     <b>setting parameters
                     </b> 
@@ -208,7 +251,17 @@
             <div id="loadingIndicator" class="loader" style="display: none;"></div>
             <div class="row text-center section2-part1">
                 <div class="col-4 align-self-center">
-                    <b><h2 class="gradient-text text-uppercase">INITIAL DEGRADATION TIME PREDICTION</h2></b>
+                    <h2 class="gradient-text text-uppercase"><b>Processed signals</b></h2>
+                    <h4>Processed Signal Value: </h4>
+                    <div class="monitor-container">
+                        <div class="monitor" id="signal_monitor">
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <input type="range" min="0" max="100" value="0" id="signal_slider">
+                    </div>
+                    <p>Time (minutes): <span id="signal_time"></span></p>
+                    <p style="color: var(--secondary-color);">Adjust the slider above <i class="fas fa-arrow-up"></i></p>
                 </div>
                 <div class="col">
                     <img class="section2-image" id="signalsPlot" src="#" alt="Signal Plot" style="display:none;">
@@ -221,7 +274,19 @@
                     <script src="/static/js/Visualize_signals.js"></script>
                 </div>
                 <div class="col-4 align-self-center">
-                    <b><h2 class="gradient-text text-uppercase">Remaining Useful Life (RUL) PREDICTION</h2></b>
+                    <h2 class="gradient-text text-uppercase"><b>Remaining Useful Life (RUL) PREDICTION</b></h2>
+                    <h4>Predicted RUL: </h4>
+                    <div class="monitor-container">
+                        <div class="monitor">
+                            <span id="label_monitor"></span>%
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <input type="range" min="0" max="100" value="0" id="label_slider">
+                    </div>
+                    
+                    <p>Time (minutes): <span id="label_time"></span></p>
+                    <p style="color: var(--secondary-color);">Adjust the slider above <i class="fas fa-arrow-up"></i></p>
                 </div>
             </div>           
         </div>

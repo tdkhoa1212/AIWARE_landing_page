@@ -30,7 +30,7 @@ def generate_labels_plot(data, fpt):
         buffer.seek(0)
         image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
         buffer.close()
-        return image_base64
+        return image_base64, Predicted_labels
     except Exception as e:
         print(e)
         return None
@@ -42,7 +42,7 @@ def generate_signals_plot(data, fpt):
         if fpt is not None and fpt < len(data):
             plt.axvline(x=fpt, color='red', linestyle='--', linewidth=1)
             plt.scatter(fpt, data[fpt], color='red', s=70,  label='Initial degradation time')
-        plt.plot(data, label='Signal')
+        plt.plot(data, label='Signal value')
         
         plt.grid(True, color='gray')  # Add grid with gray color
 

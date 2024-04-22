@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 import pickle
 import logging
+import json
+import numpy as np
 from app.services.Visualization_service import generate_signals_plot, generate_labels_plot
 from app.utils.Common_utils import preprocess_signals, predict_time
 
@@ -24,7 +26,7 @@ def get_signals_data(condition: str):  # Data's shape: (122, 32768, 2)
 
 
 @router.get("/signals/plot")
-def get_signals_plot(condition: str, technique: str, axis: str, filter: str):  # Both parameters included
+def get_signals_plot(condition: str, technique: str, axis: str, filter: str):  
     try:
         fpt = None
         data = get_signals_data(condition)
@@ -34,13 +36,16 @@ def get_signals_plot(condition: str, technique: str, axis: str, filter: str):  #
             fpt = predict_time(processed_data)
 
         signals_plot = generate_signals_plot(processed_data, fpt)
-        labels_plot = generate_labels_plot(processed_data, fpt)
-        
-        # Return the generated plot as a base64 image within a JSON response
-        return {"signals": signals_plot, "labels": labels_plot}
+        labels_plot, predicted_labels = generate_labels_plot(processed_data, fpt)
+
+        processed_data_json = [round(value, 2) for value in processed_data.tolist()]
+        predicted_labels_json = [round(value, 2) for value in predicted_labels.tolist()]
+
+        return {"plotted_signals": signals_plot, "plotted_labels": labels_plot, \
+                "processed_signals": processed_data_json, "predicted_labels": predicted_labels_json}
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}", exc_info=True)
-        # Return a general error message to the client
         raise HTTPException(status_code=500, detail="An error occurred while generating the plot.")
+
 
 
