@@ -128,14 +128,13 @@
 
 
     .monitor{
-        font-size: 2.8em;
+        font-size: 7em;
         border-radius: 0.25em;
         border: 0.03em solid var(--border-color);
         padding: 0.2em;
         padding-left: 0.4em;
         padding-right: 0.4em;
-        margin-top: 1em;
-        margin-bottom: 0.4em;
+        margin-bottom: 1em;
         display: flex;
         justify-content: center; 
         align-items: center; 
@@ -149,14 +148,59 @@
         var axisSelector = document.getElementById('axisSelector');
         var configurationDescription = document.getElementById('configurationDescription'); 
         var predictionDescription = document.getElementById('predictionDescription');
-        var predictionWarning = document.getElementById('predictionWarning');
         var predictionSelector = document.getElementById('predictionSelector');
         var stateSelector = document.getElementById('stateSelector');
+        var currentSignalMonitor = document.getElementById('currentSignalMonitor');
+        var historicalSignalMonitor = document.getElementById('historicalSignalMonitor');
+        var historicalLabelMonitor = document.getElementById('historicalLabelMonitor');
+        var currentLabelMonitor = document.getElementById('currentLabelMonitor');
+        var currentStateOption = document.querySelector('option[value="currentState"]');
+        var initialDegradationPredictionOption = document.querySelector('option[value="initialDegradationPrediction"]');
 
-        var currentSignalMonitor = document.getElementById('currentSignalMonitor');
-        var currentSignalMonitor = document.getElementById('currentSignalMonitor');
-        var currentSignalMonitor = document.getElementById('currentSignalMonitor');
-        var currentSignalMonitor = document.getElementById('currentSignalMonitor');
+        // Function to hide current state option
+        function hideCurrentStateOption() {
+            currentStateOption.style.display = 'none';
+        }
+
+        // Function to show current state option
+        function showCurrentStateOption() {
+            currentStateOption.style.display = 'block';
+        }
+
+        // Function to hide initial degradation prediction option
+        function hideInitialDegradationPredictionOption() {
+            initialDegradationPredictionOption.style.display = 'none';
+        }
+
+        // Function to show initial degradation prediction option
+        function showInitialDegradationPredictionOption() {
+            initialDegradationPredictionOption.style.display = 'block';
+        }
+
+        // Initial setup based on default prediction technique
+        if (predictionSelector.value === 'initialDegradationPrediction') {
+            hideCurrentStateOption();
+        } else {
+            showCurrentStateOption();
+        }
+
+        // Event listener for prediction selector change
+        predictionSelector.addEventListener('change', function() {
+            if (this.value === 'initialDegradationPrediction') {
+                hideCurrentStateOption();
+            } else {
+                showCurrentStateOption();
+            }
+        });
+
+        // Event listener for state selector change
+        stateSelector.addEventListener('change', function() {
+            if (this.value === 'currentState') {
+                hideInitialDegradationPredictionOption();
+            } else {
+                showInitialDegradationPredictionOption();
+            }
+        });
 
         // Update description----------------------------------------------------------------------
         var descriptions = {
@@ -185,7 +229,6 @@
         });
 
         // Update plotting results ----------------------------------------------------------------------
-        // currentSignalMonitor historicalSignalMonitor historicalLabelMonitor currentLabelMonitor
         function UpdatePlottingResults(predictionSelector, stateSelector) {            
             // Hide all elements
             historicalSignalMonitor.style.display = 'none';
@@ -203,16 +246,7 @@
             if (predictionSelector.value == 'rulPrediction' && stateSelector.value == 'currentState') {
                 currentLabelMonitor.style.display = 'block';
             }
-            Warning(predictionSelector, stateSelector);
         }
-        
-        function Warning(predictionSelector, stateSelector) {
-            if (predictionSelector.value == 'initialDegradationPrediction' && stateSelector.value == 'currentState') {
-                predictionWarning.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Initial Degradation Prediction method is only used for data in historical state, not current state. Please choose a different option for either the "Prediction Technique" or "Machine State"!';
-            } else {
-                predictionWarning.textContent = '';
-            }
-        }              
 
         function UpdatePredictionDescription(predictionSelector, stateSelector) {
             let predType = '';
@@ -239,7 +273,7 @@
             } else {
                 predictionDescription.textContent = '';
             }
-        }        
+        }
 
         UpdatePlottingResults(predictionSelector, stateSelector);
         UpdatePredictionDescription(predictionSelector, stateSelector);
@@ -384,11 +418,8 @@
                     Prediction method 
                 </h2>
             </div>
-            <div class="row text-left">
-                <p class="mb-1" style="color: var(--secondary-color);" id="predictionDescription"></p>
-            </div>
             <div class="row text-left" style="margin-bottom: 1.5em;">
-                <p style="color: var(--warning-color);" id="predictionWarning"></p>
+                <p class="mb-1" style="color: var(--secondary-color);" id="predictionDescription"></p>
             </div>
 
             <div class="row text-left">
@@ -453,21 +484,22 @@
                     <img class="section2-image" id="labelsPlot" src="#" alt="Signal Plot" style="display:none;">
                 </div>
                 <div id="currentLabelMonitor" class="col align-self-center" style="display: none;">
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Current RUL PREDICTIONS</h2>
+                    <h2 class="text-uppercase" style="color: var(--heading-color);">Current RUL PREDICTION</h2>
+                    <div class="monitor-container">
+                        <div class="monitor">
+                            <span id="label_monitor"></span>%
+                        </div>
+                    </div>
+
                     <div class="slider-container">
                         <div class="slider">
                             <input type="range" min="0" max="100" value="10" id="label_slider">
                         </div>
                     </div>
-                    <h3 class="mt-3 mb-1 font-weight-bold">Input Data</h3>
-                    <p style="color: var(--secondary-color);">At the <span id="label_time"></span>th minute</p>
+                    <p style="color: var(--secondary-color);">Assume the available input data captured at minute <span id="label_time"></span> as the current moment input data </p>
 
-                    <div class="monitor-container mt-3">
-                        <div class="monitor">
-                            <span id="label_monitor"></span>%
-                        </div>
-                    </div>
-                    <h3 class="font-weight-bold">Predicted RUL Output</h3>
+                    
+                    {# <h3 class="font-weight-bold">Predicted RUL Output</h3> #}
                 </div>
             </div>  
 
