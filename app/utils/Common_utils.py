@@ -85,9 +85,9 @@ def preprocess_signals(data, technique, axis, filter):
     # Applying the requested filter
     if filter == 'none':
         return processed_data
-    elif filter == 'gaussian':
+    elif filter == 'Gaussian':
         return Gaussian(processed_data)
-    elif filter == 'moving-average':
+    elif filter == 'Moving-average':
         return moving_average(processed_data)
     else:
         raise ValueError(f"Unknown filter: {filter}")

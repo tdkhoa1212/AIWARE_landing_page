@@ -20,8 +20,9 @@ def generate_labels_plot(data, fpt):
         plt.plot(Predicted_labels, label="Predicted RUL")
         plt.grid(True, color='gray')  # Add grid with gray color
 
-        plt.ylabel('Percentage (%)', color='white')  # Change x-axis label
-        plt.xlabel('Time (minutes)', color='white')
+        # plt.title('Overall RUL Prediction Plot', color='white', fontweight='bold')
+        plt.ylabel('Predicted RUL Output', color='white')  # Change x-axis label
+        plt.xlabel('Input data at time (minutes)', color='white')
         plt.legend()
 
         buffer = BytesIO()
@@ -46,9 +47,9 @@ def generate_signals_plot(data, fpt):
         
         plt.grid(True, color='gray')  # Add grid with gray color
 
-        # plt.title('Signal Plot', color='white')
-        plt.xlabel('Time (minutes)', color='white')  # Change x-axis label
-        plt.ylabel('Signal Value', color='white')
+        # plt.title('Overall Processed Signal Plot', color='white', fontweight='bold')
+        plt.xlabel('Input data at Time (minutes)', color='white')  # Change x-axis label
+        plt.ylabel('Magnitude Output', color='white')
         plt.legend()
         
         buffer = BytesIO()

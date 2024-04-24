@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const signalsPlot = document.getElementById('signalsPlot');
     const labelsPlot = document.getElementById('labelsPlot');
 
+    const preprocessingDescription = document.getElementById('preprocessingDescription');
+
     const signal_slider = document.getElementById("signal_slider");
     const signal_monitor = document.getElementById("signal_monitor");
     var signal_time = document.getElementById("signal_time");
@@ -31,19 +33,37 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No initial technique radio button is selected.');
     }
 
+    // Preprocessing description update
+    function UpdateConfigDescription(filterSelector, techniqueSelectorValue) {
+        if (filterSelector && techniqueSelectorValue) {
+            if (filterSelector.value) {
+                preprocessingDescription.textContent = 'Each short input vector signal is condensed into a single point using ' 
+                    + techniqueSelectorValue 
+                    + ', with this point representing the input vector signal. ';
+                preprocessingDescription.textContent += (filterSelector.value != 'none') ? 
+                    'The ' + techniqueSelectorValue + ' indicator is then smoothed using ' + filterSelector.value + ' function' : '';
+            } else {
+                preprocessingDescription.textContent = '';
+            }
+        } else {
+            preprocessingDescription.textContent = 'Please select options to view preprocessing description.';
+        }
+    }     
+
     // Functions
     function updateTechniqueSelector(value) {
         if (value === "technique1") {
             techniqueSelector1.disabled = false;
             techniqueSelector2.disabled = true;
             techniqueSelectorValue = techniqueSelector1.value;
-            updateFilterSelector(techniqueSelectorValue);
         } else if (value === "technique2") {
             techniqueSelector1.disabled = true;
             techniqueSelector2.disabled = false;
             techniqueSelectorValue = techniqueSelector2.value;
-            updateFilterSelector(techniqueSelectorValue);
+            
         }
+        updateFilterSelector(techniqueSelectorValue);
+        UpdateConfigDescription(filterSelector, techniqueSelectorValue)
     }
     
     function updateFilterSelector(techniqueSelectorValue) {
@@ -60,12 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (conditionSelector.value, techniqueSelectorValue, axisSelector.value, filterSelector.value){
             fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, axisSelector.value, filterSelector.value)
                 .then(() => {
-                    console.log(signal_array);
                     updateSignalMonitor(signal_slider.value);
                     updateLabelMonitor(label_slider.value);
                 })
                 .catch(error => {
-                    // Handle errors
                     console.error('Error fetching and updating plot:', error);
                 });
         }
@@ -131,12 +149,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });    
 
     initialParameters();
+    UpdateConfigDescription(filterSelector, techniqueSelectorValue);
 
     techniqueSelector1.addEventListener('change', function() {
         updateFilterSelector(techniqueSelector1.value);
+        UpdateConfigDescription(filterSelector, techniqueSelector1.value);
     });
     techniqueSelector2.addEventListener('change', function() {
         updateFilterSelector(techniqueSelector2.value);
+        UpdateConfigDescription(filterSelector, techniqueSelector2.value);
     });
 
     conditionSelector.addEventListener('change', function() {
@@ -157,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     filterSelector.addEventListener('change', function() {
         Processed_signal_type.innerText = techniqueSelectorValue;
+        UpdateConfigDescription(this, techniqueSelectorValue);
         fetchAndUpdatePlot(conditionSelector.value, techniqueSelectorValue, axisSelector.value, this.value);
     });
 
