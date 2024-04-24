@@ -149,6 +149,7 @@
         var axisSelector = document.getElementById('axisSelector');
         var configurationDescription = document.getElementById('configurationDescription'); 
         var predictionDescription = document.getElementById('predictionDescription');
+        var predictionWarning = document.getElementById('predictionWarning');
         var predictionSelector = document.getElementById('predictionSelector');
         var stateSelector = document.getElementById('stateSelector');
 
@@ -202,7 +203,16 @@
             if (predictionSelector.value == 'rulPrediction' && stateSelector.value == 'currentState') {
                 currentLabelMonitor.style.display = 'block';
             }
+            Warning(predictionSelector, stateSelector);
         }
+        
+        function Warning(predictionSelector, stateSelector) {
+            if (predictionSelector.value == 'initialDegradationPrediction' && stateSelector.value == 'currentState') {
+                predictionWarning.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Initial Degradation Prediction method is only used for data in historical state, not current state. Please choose a different option for either the "Prediction Technique" or "Machine State"!';
+            } else {
+                predictionWarning.textContent = '';
+            }
+        }              
 
         function UpdatePredictionDescription(predictionSelector, stateSelector) {
             let predType = '';
@@ -368,8 +378,11 @@
                     <b>Prediction method</b> 
                 </h2>
             </div>
-            <div class="row" style="margin-bottom: 1.5em;">
-                <p style="color: var(--secondary-color);" id="predictionDescription"></p>
+            <div class="row text-left">
+                <p class="mb-1" style="color: var(--secondary-color);" id="predictionDescription"></p>
+            </div>
+            <div class="row text-left" style="margin-bottom: 1.5em;">
+                <p style="color: var(--warning-color);" id="predictionWarning"></p>
             </div>
 
             <div class="row text-left">
