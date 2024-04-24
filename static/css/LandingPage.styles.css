@@ -52,6 +52,7 @@
 
 :root {
     --hover-background-color: #f0f0f0;
+    --heading-color: #70E2FF;
     --primary-color: #E9E7E5;
     --secondary-color: rgba(233, 231, 229, 0.65);
     --background-color: black;
