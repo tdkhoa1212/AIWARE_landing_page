@@ -128,7 +128,7 @@
 
 
     .monitor{
-        font-size: 7em;
+        font-size: 8em;
         border-radius: 0.25em;
         border: 0.03em solid var(--border-color);
         padding: 0.2em;
@@ -484,7 +484,7 @@
                     <img class="section2-image" id="labelsPlot" src="#" alt="Signal Plot" style="display:none;">
                 </div>
                 <div id="currentLabelMonitor" class="col align-self-center" style="display: none;">
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Current RUL PREDICTION</h2>
+                    <h2 class="text-uppercase" style="color: var(--heading-color);">Real-time RUL PREDICTION</h2>
                     <div class="monitor-container">
                         <div class="monitor">
                             <span id="label_monitor"></span>%
@@ -496,7 +496,7 @@
                             <input type="range" min="0" max="100" value="10" id="label_slider">
                         </div>
                     </div>
-                    <p style="color: var(--secondary-color);">Assume the available input data captured at minute <span id="label_time"></span> as the current moment input data </p>
+                    <p style="color: var(--secondary-color);">Assume the data captured at minute <span id="label_time"></span> of our available dataset represents <span style="color: var(--warning-color);">the current moment data from a machine</span></p>
 
                     
                     {# <h3 class="font-weight-bold">Predicted RUL Output</h3> #}
