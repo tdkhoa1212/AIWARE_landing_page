@@ -107,8 +107,10 @@ h4 {
 
 .description {
     color: var(--secondary-color); 
-    font-size: 0.8em; 
-    margin-bottom:0.15em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    height: 9em;
+    font-size: 1em;
 }
 
 .card {

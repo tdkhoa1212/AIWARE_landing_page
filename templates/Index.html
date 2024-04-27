@@ -137,18 +137,32 @@
     
     /* =========================== SECTION 3 ==========================*/
     .section3-box{
+        /*
         border: 0.0325em solid var(--border-color); 
         border-radius: 1.25em;
+        
+        */
         padding: 1em;
         height: 6.8em;
     }
 
+    .section3-container{
+        border-top: 0.0325em solid var(--border-color); 
+        border-bottom: 0.0325em solid var(--border-color); 
+        padding: 2em;
+        padding-left: 3em;
+        padding-right: 3em;
+    }
     /* =========================== SECTION 4 ==========================*/
     .section4-box{
         border: 0.0325em solid var(--border-color); 
         border-radius: 1.25em;
         padding: 1em;
-        height: 8.8em;
+        height: 24em;
+    }
+    .section4-heading{
+        height: 7em;
+        width: auto;
     }
 
     /* =========================== SECTION 5 ==========================*/
@@ -156,7 +170,13 @@
         border: 0.0325em solid var(--border-color); 
         border-radius: 1.25em;
         padding: 1em;
+        /*
         height: 12.5em;
+        */
+    }
+    .section5-heading{
+        height: 8.4em;
+        width: auto;
     }
 
     /* =========================== SECTION 6 ==========================*/
@@ -280,7 +300,7 @@
                         we provide cutting-edge solutions. Enhance reliability, optimize performance, 
                         and transform your business with our integrated AI technologies.
                     </p>
-                    <a href="Products">
+                    <a href="About">
                         <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
                     </a>
                 </div>
@@ -290,204 +310,193 @@
         </div>
     </section>
     
-    {# @*========================================== SECTION 2 ==========================================*@ #}
-    <section class="page-banner">
-        <div class="contain">
-            <div class="row text-center mb-1">
-                <div class="col">
-                    <h2 class="gradient-text"><b>CORE SKILLS </b></h2>
+        {# @*========================================== SECTION 5 (-> 2) ==========================================*@ #}
+        <section class="page-banner text-center">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <h2 class="gradient-text  text-uppercase"><b>Primary Solutions</b></h2>
+                    </div>
                 </div>
+                <div class="row text-left mb-1">
+                    <p style="color: var(--secondary-color); font-size: 1em;">Our AI solutions tailored for rotating machinery and batteries play a crucial role in minimizing downtime, enhancing safety, and reducing costs. By proactively addressing potential issues before they escalate, these solutions optimize overall performance, bolster safety protocols, and streamline operational efficiency. The result? Substantial savings and marked improvements across various facets of operations.</p>
+                </div>
+    
+                <div class="row">
+                    <div class="col section5-box box-transition mr-3 me-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="section5-heading">
+                                    <i class="fas fa-tools fa-2x"></i><p class="text-uppercase mt-3"><b>Predictive Maintenance (PM)</b></p>
+                                </div>
+                                <div class="description">
+                                    Addressing potential failures in machines such as rotating machinery, jet engines, etc., to minimize downtime and enhance reliability.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="button-wrapper col">
+                                <a href="Products">
+                                    <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col section5-box box-transition mr-3 me-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="section5-heading">
+                                    <i class="fas fa-heartbeat fa-2x"></i><p class="text-uppercase mt-3"><b>Prognostics and Health Management (PHM)</b></p>
+                                </div>
+                                <div class="description">
+                                    Forecasting Remaining Useful Life (RUL) for machines such as rotating machinery, jet engines, etc., optimizing maintenance schedules.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="button-wrapper col">
+                                <a href="Products">
+                                    <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col section5-box box-transition mr-3 me-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="section5-heading">
+                                    <i class="fas fa-chart-bar fa-2x"></i><p class="text-uppercase mt-3"><b>Data Analysis</b></p>
+                                </div>
+                                <div class="description">
+                                    Analyze diverse datasets, including vibration, current, and voltage, and other data from sensors, user input, systems to derive actionable insights.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="button-wrapper col">
+                                <a href="Products">
+                                    <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col section5-box box-transition mr-3 me-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="section5-heading">
+                                    <i class="fas fa-car-battery fa-2x"></i><p class="text-uppercase mt-3"><b>Battery Management System (BMS)</b></p>
+                                </div>
+                                <div class="description">
+                                    Forecasting Predict State of Charge (SOC), State of Health (SOH), and Remaining Useful Life (RUL) of batteries, enhancing performance and longevity.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="button-wrapper col">
+                                <a href="Products">
+                                    <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </section>
+    
+    {# @*========================================== SECTION 3 ==========================================*@ #}
+    <section class="page-banner text-center">
+        <div class="container section3-container">
+            <div class="row" >
+                <h4 class="text-uppercase">
+                    <b>Time-Series Data Collection</b> 
+                </h4>
             </div>
             <div class="row">
-                <div class="col">
-                    <h4 style="text-transform: uppercase;"><b>Rotating Machines & Batteries</b></h4>                        
-                    <ul class="list-unstyled">
-                        <li>
-                            <i class="fas fa-cogs"></i> <b style="text-transform: uppercase;">Predictive Maintenance (PM)</b>
-                            <div class="description">
-                                Addressing potential failures in machines such as rotating machinery, jet engines, etc., to minimize downtime and enhance reliability.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-cogs"></i> <b style="text-transform: uppercase;">Prognostics and Health Management (PHM)</b>
-                            <div class="description">
-                                Forecasting Remaining Useful Life (RUL) for machines such as rotating machinery, jet engines, etc., optimizing maintenance schedules.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-cogs"></i> <b style="text-transform: uppercase;">Battery Management System (BMS)</b>
-                            <div class="description">
-                                Forecasting Predict State of Charge (SOC), State of Health (SOH), and Remaining Useful Life (RUL) of batteries, enhancing performance and longevity.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-cogs"></i> <b style="text-transform: uppercase;">Data Collection</b>
-                            <div class="description">
-                                Collecting data from sensors, and integrate it into your system for analysis.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-cogs"></i> <b style="text-transform: uppercase;">Data Analysis</b>
-                            <div class="description">
-                                Analyze diverse datasets, including vibration, current, and voltage, and other data from sensors, user input, systems to derive actionable insights.
-                            </div>
-                        </li>
-                    </ul>                            
-                </div>
-                     
-                <div class="col">
-                    <h4 style="text-transform: uppercase;"><b style="text-transform: uppercase;">Sound & Image Processing</b></h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <i class="fas fa-microphone-alt"></i> <b style="text-transform: uppercase;">Sound-based Flu Detection</b>
-                            <div class="description">
-                                Leveraging sound signals for early detection of flu outbreaks in communities.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-microphone-alt"></i> <b style="text-transform: uppercase;">Sound & Image-based Occupancy Estimation</b>
-                            <div class="description">
-                                Estimating occupancy levels in buildings using sound and image processing techniques.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-microphone-alt"></i> <b style="text-transform: uppercase;">Image Analysis</b>
-                            <div class="description">
-                                Implementing advanced image analysis methods, including Object and Face Detection algorithms.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-microphone-alt"></i> <b style="text-transform: uppercase;">Sound Processing</b>
-                            <div class="description">
-                                Utilizing sound processing techniques for Human and Object Voice Detection applications.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="col">
-                    <h4 style="text-transform: uppercase;"><b>Web Development</b></h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <i class="fas fa-globe"></i> <b style="text-transform: uppercase;">Web Development</b>
-                            <div class="description">
-                                Integrating AI models into Web Systems to enhance functionality and user experience.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <p class="text-left" style="color: var(--secondary-color); font-size: 1em;">Real-time collection of various data types, ranging from signals captured by sensors to user-generated data, undergoes thorough analysis using statistical methods and AI models.</p>
+            </div>
+            <div class="row">
+                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-tachometer-alt fa-2x"></i><p class="text-uppercase mt-3 font-weight-bold">Accelerometer</p></div>
+                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-running fa-2x"></i><p class="text-uppercase mt-3 font-weight-bold">Motion</p></div>
+                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-thermometer-half fa-2x"></i><p class="text-uppercase mt-3 font-weight-bold">Temperature</p></div>
+                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-compress-arrows-alt fa-2x"></i><p class="text-uppercase mt-3 font-weight-bold">Pressure</p></div>
+                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-volume-up fa-2x"></i><p class="text-uppercase mt-3 font-weight-bold">Sound</p></div>
+                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-plus-circle fa-2x"></i><p class="text-uppercase mt-3 font-weight-bold">And more</p></div>
             </div>
         </div>
     </section>
 
-    {# @*========================================== SECTION 3 ==========================================*@ #}
-    <section class="page-banner text-center">
-        <div class="container">
-            <div class="row" >
-                <h2 class="gradient-text mb-1" style="text-transform: uppercase;">
-                    <b>Time-Series Data Analysis</b> 
-                </h2>
-            </div>
-            <div class="row" style="margin-bottom: 1.5em;">
-                <p style="color: var(--secondary-color);">Analyze sensor-derived time-series data</p>
-            </div>
-            <div class="row">
-                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-tachometer-alt fa-2x"></i><p class="text-uppercase mt-3">Accelerometer</p></div>
-                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-running fa-2x"></i><p class="text-uppercase mt-3">Motion</p></div>
-                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-thermometer-half fa-2x"></i><p class="text-uppercase mt-3">Temperature</p></div>
-                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-compress-arrows-alt fa-2x"></i><p class="text-uppercase mt-3">Pressure</p></div>
-                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-volume-up fa-2x"></i><p class="text-uppercase mt-3">Sound</p></div>
-                <div class="col section3-box box-transition mr-3 me-3"><i class="fas fa-plus-circle fa-2x"></i><p class="text-uppercase mt-3">And more</p></div>
-            </div>
-        </div>
-    </section>
+    
 
     {# @*========================================== SECTION 4 ==========================================*@ #}
     <section class="page-banner text-center">
         <div class="container">
-            <div class="row" >
-                <h2 class="gradient-text mb-1" style="text-transform: uppercase;">
-                    <b>Sound & Image Processing</b> 
-                </h2>
-            </div>
-            <div class="row text-left" style="margin-bottom: 1.5em;">
-                <p style="color: var(--secondary-color);">Detect flu outbreaks, estimate occupancy levels, identify faces and objects, and classify images accurately with our advanced AI solutions.</p>
-            </div>
-            <div class="row">
-                <div class="col section4-box box-transition mr-3 me-3"><i class="fas fa-head-side-cough fa-2x"></i><p class="text-uppercase mt-3">Flu Detection</p></div>
-                <div class="col section4-box box-transition mr-3 me-3"><i class="fas fa-users fa-2x"></i><p class="text-uppercase mt-3">Occupancy Estimation</p></div>
-                <div class="col section4-box box-transition mr-3 me-3"><i class="fas fa-eye fa-2x"></i><p class="text-uppercase mt-3">Face & Object detection</p></div>
-                <div class="col section4-box box-transition mr-3 me-3"><i class="fas fa-brain fa-2x"></i><p class="text-uppercase mt-3">Image Classification</p></div>
-            </div>            
-        </div>
-    </section>
-
-    {# @*========================================== SECTION 5 ==========================================*@ #}
-    <section class="page-banner text-center">
-        <div class="container">
-            <div class="row" >
-                <h2 class="gradient-text mb-1" style="text-transform: uppercase;">
-                    <b>Rotating Machines & Batteries</b> 
-                </h2>
-            </div>
-            <div class="row text-left" style="margin-bottom: 1.5em;">
-                <p style="color: var(--secondary-color);">Predictive maintenance for rotating machinery minimizes downtime, enhances safety, and saves costs, while Battery Management Systems optimize performance, safety, and efficiency, yielding significant savings and operational improvements.</p>
+            <div class="row text-center">
+                <div class="col">
+                    <h2 class="gradient-text text-uppercase"><b>Other Solutions</b></h2>
+                </div>
             </div>
 
+            <div class="row text-left">
+                <p style="color: var(--secondary-color); font-size: 1em;">Our AI solutions cover a wide spectrum of applications, including flu detection, occupancy estimation, face and object detection, image classification, and web development. Leveraging advanced technologies, we provide actionable insights to optimize operations, enhance safety, and drive innovation across various domains.</p>
+            </div>
             <div class="row">
-                <div class="col section5-box box-transition mr-3 me-3">
-                    <div class="row" style="height: 8em;">
-                        <div class="col">
-                            <i class="fas fa-tools fa-2x"></i><p class="text-uppercase mt-3">Predictive Maintenance</p>
-                        </div>
-                    </div>
+                <div class="col section4-box box-transition mr-3 me-3">
                     <div class="row">
-                        <div class="button-wrapper col">
-                            <a href="Products">
-                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
-                            </a>
+                        <div class="col">
+                            <div class="section4-heading">
+                                <i class="fas fa-head-side-cough fa-2x"></i><p class="text-uppercase mt-3"><b>Flu Detection</b></p>
+                            </div>
+                            <div class="description">
+                                Utilizes data analytics and AI to track and identify influenza outbreaks, aiding in timely interventions and resource allocation.                            
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col section5-box box-transition mr-3 me-3">
-                    <div class="row" style="height: 8em;">
-                        <div class="col">
-                            <i class="fas fa-heartbeat fa-2x"></i><p class="text-uppercase mt-3">Prognostics and Health Management</p>
-                        </div>
-                    </div>
+                <div class="col section4-box box-transition mr-3 me-3">
                     <div class="row">
-                        <div class="button-wrapper col">
-                            <a href="Products">
-                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
-                            </a>
+                        <div class="col">
+                            <div class="section4-heading">
+                                <i class="fas fa-users fa-2x"></i><p class="text-uppercase mt-3"><b>Occupancy Estimation</b></p>
+                            </div>
+                            <div class="description">
+                                Uses sensor data and machine learning to determine the number of people in a space, optimizing operations and enhancing security.
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col section5-box box-transition mr-3 me-3">
-                    <div class="row" style="height: 8em;">
-                        <div class="col">
-                            <i class="fas fa-chart-bar fa-2x"></i><p class="text-uppercase mt-3">Data Analysis</p>
-                        </div>
-                    </div>
+                <div class="col section4-box box-transition mr-3 me-3">
                     <div class="row">
-                        <div class="button-wrapper col">
-                            <a href="Products">
-                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
-                            </a>
+                        <div class="col">
+                            <div class="section4-heading">
+                                <i class="fas fa-eye fa-2x"></i><p class="text-uppercase mt-3"><b>Face & Object detection</b></p>
+                            </div>
+                            <div class="description">
+                                Employs computer vision to locate faces or objects in images or video streams, vital for surveillance and automated content tagging.
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col section5-box box-transition mr-3 me-3">
-                    <div class="row" style="height: 8em;">
+                <div class="col section4-box box-transition mr-3 me-3">
+                    <div class="row">
                         <div class="col">
-                            <i class="fas fa-car-battery fa-2x"></i><p class="text-uppercase mt-3">Battery Management System</p>
+                            <div class="section4-heading">
+                                <i class="fas fa-brain fa-2x"></i><p class="text-uppercase mt-3"><b>Image Classification</b></p>
+                            </div>
+                            <div class="description">
+                                Categorizes images into predefined classes using deep learning, aiding in tasks like content moderation and medical image analysis.
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="col section4-box box-transition mr-3 me-3">
                     <div class="row">
-                        <div class="button-wrapper col">
-                            <a href="Products">
-                                <button type="button" class="button_slide slide_right">Explore more &#8594;</button>
-                            </a>
+                        <div class="col">
+                            <div class="section4-heading">
+                                <i class="fas fa-globe fa-2x"></i><p class="text-uppercase mt-3"><b>Web development</b></p>
+                            </div>
+                            <div class="description">
+                                Involves designing, creating, and maintaining websites and web applications, encompassing frontend and backend development for seamless user experiences.
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -149,18 +149,12 @@
         var configurationDescription = document.getElementById('configurationDescription'); 
         var predictionDescription = document.getElementById('predictionDescription');
         var predictionSelector = document.getElementById('predictionSelector');
-        var stateSelector = document.getElementById('stateSelector');
         var currentSignalMonitor = document.getElementById('currentSignalMonitor');
         var historicalSignalMonitor = document.getElementById('historicalSignalMonitor');
         var historicalLabelMonitor = document.getElementById('historicalLabelMonitor');
         var currentLabelMonitor = document.getElementById('currentLabelMonitor');
         var currentStateOption = document.querySelector('option[value="currentState"]');
         var initialDegradationPredictionOption = document.querySelector('option[value="initialDegradationPrediction"]');
-
-        // Function to hide current state option
-        function hideCurrentStateOption() {
-            currentStateOption.style.display = 'none';
-        }
 
         // Function to show current state option
         function showCurrentStateOption() {
@@ -176,31 +170,6 @@
         function showInitialDegradationPredictionOption() {
             initialDegradationPredictionOption.style.display = 'block';
         }
-
-        // Initial setup based on default prediction technique
-        if (predictionSelector.value === 'initialDegradationPrediction') {
-            hideCurrentStateOption();
-        } else {
-            showCurrentStateOption();
-        }
-
-        // Event listener for prediction selector change
-        predictionSelector.addEventListener('change', function() {
-            if (this.value === 'initialDegradationPrediction') {
-                hideCurrentStateOption();
-            } else {
-                showCurrentStateOption();
-            }
-        });
-
-        // Event listener for state selector change
-        stateSelector.addEventListener('change', function() {
-            if (this.value === 'currentState') {
-                hideInitialDegradationPredictionOption();
-            } else {
-                showInitialDegradationPredictionOption();
-            }
-        });
 
         // Update description----------------------------------------------------------------------
         var descriptions = {
@@ -229,28 +198,23 @@
         });
 
         // Update plotting results ----------------------------------------------------------------------
-        function UpdatePlottingResults(predictionSelector, stateSelector) {            
+        function UpdatePlottingResults(predictionSelector) {            
             // Hide all elements
             historicalSignalMonitor.style.display = 'none';
-            currentSignalMonitor.style.display = 'none';
             historicalLabelMonitor.style.display = 'none';
-            currentLabelMonitor.style.display = 'none';
         
             // Check conditions and display the appropriate element
-            if (predictionSelector.value == 'initialDegradationPrediction' && stateSelector.value == 'historicalState') {
+            if (predictionSelector.value == 'initialDegradationPrediction') {
                 historicalSignalMonitor.style.display = 'block';
             }
-            if (predictionSelector.value == 'rulPrediction' && stateSelector.value == 'historicalState') {
+            if (predictionSelector.value == 'rulPrediction') {
                 historicalLabelMonitor.style.display = 'block';
             }
-            if (predictionSelector.value == 'rulPrediction' && stateSelector.value == 'currentState') {
-                currentLabelMonitor.style.display = 'block';
-            }
+
         }
 
-        function UpdatePredictionDescription(predictionSelector, stateSelector) {
+        function UpdatePredictionDescription(predictionSelector) {
             let predType = '';
-            let stateType = '';
         
             if (predictionSelector.value == 'initialDegradationPrediction') {
                 predType = 'Initial Degradation Prediction';
@@ -260,31 +224,19 @@
                 predType = 'Remaining Useful Life (RUL) Prediction';
             }
         
-            if (stateSelector.value == 'historicalState') {
-                stateType = 'historical data';
-            }
-        
-            if (stateSelector.value == 'currentState') {
-                stateType = 'current data';
-            }
-        
-            if (predictionSelector.value && stateSelector.value) {
-                predictionDescription.textContent = predType + ' for the machine based on its ' + stateType;
+            if (predictionSelector.value ) {
+                predictionDescription.textContent = predType + ' for the machine based on its bearing lifecycle.';
             } else {
                 predictionDescription.textContent = '';
             }
         }
 
-        UpdatePlottingResults(predictionSelector, stateSelector);
-        UpdatePredictionDescription(predictionSelector, stateSelector);
+        UpdatePlottingResults(predictionSelector);
+        UpdatePredictionDescription(predictionSelector);
 
         predictionSelector.addEventListener('change', function (){
-            UpdatePlottingResults(this, stateSelector);
-            UpdatePredictionDescription(this, stateSelector);
-        });
-        stateSelector.addEventListener('change', function (){
-            UpdatePlottingResults(predictionSelector, this);
-            UpdatePredictionDescription(predictionSelector, this);
+            UpdatePlottingResults(this);
+            UpdatePredictionDescription(this);
         });
     });  
 </script>
@@ -313,18 +265,22 @@
     <section class="page-banner text-center">
         <div class="container section2-container">
             {# --------------------------------------- Data configuration part --------------------------------------- #}
-            <div class="row mb-5" >
+            <div class="row">
                 <h1 class="gradient-text" style="text-transform: uppercase;">
-                    <b>PROGNOSTICS AND HEALTH MANAGEMENT (PHM) DEMO</b> 
+                    <b>PROGNOSTICS AND HEALTH MANAGEMENT (PHM)</b> 
                 </h1>
             </div>
-
+            <div class="row text-left mb-5">
+                <p style="color: var(--secondary-color);">This AI application below leverages advanced predictive algorithms to forecast the Remaining Useful Life (RUL) and Initial degradation time for bearing machinery. The dataset used for this product is 
+                    sourced from the <a href="https://biaowang.tech/xjtu-sy-bearing-datasets/" target="_blank" rel="noopener noreferrer">XJTU-SY bearing dataset</a>. 
+                    This dataset is widely recognized and utilized in research and development for predictive maintenance applications.</p>
+            </div>
             <div class="row" >
                 <h2 class="mb-1" style="text-transform: uppercase; color: var(--heading-color);">
                     Configuration
                 </h2>
             </div>
-            <div class="row" style="margin-bottom: 1.5em;">
+            <div class="row text-left" style="margin-bottom: 1.5em;">
                 <p style="color: var(--secondary-color);" id="configurationDescription"></p>
             </div>
 
@@ -430,24 +386,12 @@
                     <div class="row text-left">
                         <label for="predictionSelector" class="section2-label">Select technique:</label>
                         <select id="predictionSelector" class="section2-dropdown">
-                            <option value="initialDegradationPrediction" selected>Initial degradation prediction</option>
-                            <option value="rulPrediction">Remaining Useful Life (RUL) Prediction</option> 
+                            <option value="initialDegradationPrediction">Initial degradation prediction</option>
+                            <option value="rulPrediction" selected>Remaining Useful Life (RUL) Prediction</option> 
                         </select> 
                     </div>             
                 </div>
 
-                <div class="col mx-1">
-                    <div class="row text-left">
-                        <h3>Machine State</h3>
-                    </div>
-                    <div class="row text-left mb-5"> 
-                        <label for="stateSelector" class="section2-label">Select State: </label> 
-                        <select id="stateSelector" class="section2-dropdown">
-                            <option value="historicalState" selected>Historical state</option>
-                            <option value="currentState">Current state</option>
-                        </select> 
-                    </div>     
-                </div>
             </div>
 
             {# --------------------------------------- Result plotting part --------------------------------------- #}
@@ -455,52 +399,19 @@
             <div id="loadingIndicator" class="loader" style="display: none;"></div>
 
             <div class="row justify-content-center text-center section2-part1">
-                {# Processed data -------------------------------------------------------- #}
-                <div id="currentSignalMonitor" class="col align-self-center" style="display: none;">
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Current Preprocessed Signals</h2>
-                    <div class="slider-container">
-                        <div class="slider">
-                            <input type="range" min="0" max="100" value="10" id="signal_slider">
-                        </div>
-                    </div>
-                    <h3 class="mt-3 mb-1 font-weight-bold">Input Data</h3>
-                    <p style="color: var(--secondary-color);">At the <span id="signal_time"></span>th minute</p>
 
-                    <div class="monitor-container mt-3">
-                        <div class="monitor">
-                            <span id="signal_monitor"></span> &nbsp; <i class="fas fa-bolt"></i> 
-                        </div>
-                    </div>
-                    <h3 class="font-weight-bold"><span id="Processed_signal_type"></span> Output</h3>
-                </div>                
+                {# Processed data -------------------------------------------------------- #}
                 <div id="historicalSignalMonitor" class="col" style="display: none;"> 
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Historical Preprocessed Signals</h2>
+                    <h2 class="text-uppercase" style="color: var(--heading-color);">Overall Preprocessed Signals</h2>
                     <img class="section2-image" id="signalsPlot" src="#" alt="Signal Plot" style="display:none;">
                 </div>
 
-                {# RUL prediction -------------------------------------------------------- #}
+                {# RUL prediction --------------------------------CHECK------------------------ #}
                 <div id="historicalLabelMonitor" class="col" style="display: none;"> 
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Historical RUL PREDICTIONS</h2>
-                    <img class="section2-image" id="labelsPlot" src="#" alt="Signal Plot" style="display:none;">
+                    <h2 class="text-uppercase" style="color: var(--heading-color);">Overall RUL PREDICTIONS</h2>
+                    <div class="section2-image" id="labelsPlot" style="display:none;"></div>
                 </div>
-                <div id="currentLabelMonitor" class="col align-self-center" style="display: none;">
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Real-time RUL PREDICTION</h2>
-                    <div class="monitor-container">
-                        <div class="monitor">
-                            <span id="label_monitor"></span>%
-                        </div>
-                    </div>
-
-                    <div class="slider-container">
-                        <div class="slider">
-                            <input type="range" min="0" max="100" value="10" id="label_slider">
-                        </div>
-                    </div>
-                    <p style="color: var(--secondary-color);">Assume the data captured at minute <span id="label_time"></span> of our available dataset represents <span style="color: var(--warning-color);">the current moment data from a machine</span></p>
-
-                    
-                    {# <h3 class="font-weight-bold">Predicted RUL Output</h3> #}
-                </div>
+                
             </div>  
 
             <script src="/static/js/Visualize_signals.js"></script>

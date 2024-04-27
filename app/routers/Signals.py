@@ -28,21 +28,28 @@ def get_signals_data(condition: str):  # Data's shape: (122, 32768, 2)
 @router.get("/signals/plot")
 def get_signals_plot(condition: str, technique: str, axis: str, filter: str):  
     try:
-        fpt = None
-        data = get_signals_data(condition)
-        processed_data = preprocess_signals(data, technique, axis, filter)
+        # Fetch and preprocess signals data
+        signals_data = get_signals_data(condition)
+        processed_data = preprocess_signals(signals_data, technique, axis, filter)
         
-        fpt = predict_time(processed_data)
-
-        signals_plot = generate_signals_plot(processed_data, fpt)
-        labels_plot, predicted_labels = generate_labels_plot(processed_data, fpt)
-
+        # Predict time and generate plots
+        predicted_time = predict_time(processed_data)
+        signals_plot = generate_signals_plot(processed_data, predicted_time, technique)
+        labels_plot, predicted_labels = generate_labels_plot(processed_data, predicted_time)
+        
+        # Convert processed data and predicted labels to JSON-friendly format
         processed_data_json = [round(value, 2) for value in processed_data.tolist()]
         predicted_labels_json = [round(value, 2) for value in predicted_labels.tolist()]
 
-        return {"plotted_signals": signals_plot, "plotted_labels": labels_plot, \
-                "processed_signals": processed_data_json, "predicted_labels": predicted_labels_json}
+        # Return plot data
+        return {
+            "plotted_signals": signals_plot,
+            "plotted_labels": labels_plot,
+            "processed_signals": processed_data_json,
+            "predicted_labels": predicted_labels_json
+        }
     except Exception as e:
+        # Log and raise HTTPException for internal server errors
         logging.error(f"An error occurred: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="An error occurred while generating the plot.")
 
