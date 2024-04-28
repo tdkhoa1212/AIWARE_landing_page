@@ -58,7 +58,7 @@
         width: 100%;
         height: auto; /* Maintain aspect ratio */
         display: block; /* Ensure the image behaves as a block element */
-        margin: 0 auto; /* Center the image horizontally */
+        margin: -2em auto 0; /* Center the image horizontally and move it up by 5em */
     }
     
     .section2-part1{
@@ -72,74 +72,10 @@
         margin-left: 5em;
     }
 
-    .slider {
-        width: 100%;
-    }
 
-    .slider input[type="range"] {
-        border-radius: 1.25em;
-        border: 0.3em solid var(--primary-color);
-        -webkit-appearance: none;
-        width: 90%;
-        height: 1.5625em;
-        background-color: #CCCCCC;
-        outline: none;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
-    }
-
-    .slider input[type="range"]::-webkit-slider-thumb {
-        border-radius: 1.25em;
-        border: 0.3em solid var(--border-color);
-        background-color: white;
-        color: var(--primary-color);
-        -webkit-appearance: none;
-        width: 2.5625em;
-        height: 1.5625em;
-        cursor: pointer;
-    }
-    
-    .slider input[type="range"]::-moz-range-thumb {
-        border-radius: 1.25em;
-        border: 0.3em solid var(--border-color);
-        background-color: white; 
-        color: var(--primary-color);
-        width: 2.5625em;
-        height: 1.5625em;
-        cursor: pointer;
-    }
-    
-    .slider input[type="range"]::-ms-thumb {
-        border-radius: 1.25em;
-        border: 0.3em solid var(--border-color);
-        background-color: white;
-        color: var(--primary-color);
-        width: 2.5625em;
-        height: 1.5625em;
-        cursor: pointer;
-    }    
-
-    .monitor-container{
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        border: none;
-    }
-
-
-    .monitor{
-        font-size: 8em;
-        border-radius: 0.25em;
-        border: 0.03em solid var(--border-color);
-        padding: 0.2em;
-        padding-left: 0.4em;
-        padding-right: 0.4em;
-        margin-bottom: 1em;
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        text-align: center;
-    }
+    .section2-heading{
+        color: var(--heading-color);
+    } 
 </style>
 
 <script>
@@ -402,14 +338,30 @@
 
                 {# Processed data -------------------------------------------------------- #}
                 <div id="historicalSignalMonitor" class="col" style="display: none;"> 
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Overall Preprocessed Signals</h2>
+                    <h2 class="text-uppercase section2-heading">Overall Preprocessed Signals</h2>
                     <img class="section2-image" id="signalsPlot" src="#" alt="Signal Plot" style="display:none;">
+                    <div>
+                        <p class="text-left" style="color: var(--secondary-color);">
+                            Each short input vector signal is condensed into a single point using a signal extraction method, 
+                            with this point representing the input vector signal. 
+                            Our algorithms determine the Initial Degradation Time (the red point) based on the graph of a sequence of points (the blue line)
+                            derived from the signal extraction method. The Initial Degradation Time indicates when the bearing machine 
+                            first encountered a fault problem.
+                        </p>
+                    </div>
                 </div>
 
                 {# RUL prediction --------------------------------CHECK------------------------ #}
                 <div id="historicalLabelMonitor" class="col" style="display: none;"> 
-                    <h2 class="text-uppercase" style="color: var(--heading-color);">Overall RUL PREDICTIONS</h2>
+                    <h2 class="text-uppercase section2-heading">Overall RUL PREDICTIONS</h2>
                     <div class="section2-image" id="labelsPlot" style="display:none;"></div>
+                    <div>
+                        <p class="text-left" style="color: var(--secondary-color);">The red line represents the Initial Degradation Time, 
+                            indicating when the bearing machine first encountered a fault problem. 
+                            Consequently, the health state of the machine gradually declines until reaching the end of its life. 
+                            Our Remaining Useful Life (RUL) prediction closely aligns with the observed RUL, as illustrated in the graph.
+                        </p>
+                    </div>
                 </div>
                 
             </div>  
